@@ -12,31 +12,31 @@ const mockMeals = [
     title: 'Breakfast at home',
     description: 'Fried eggs, avocado toast, and fresh orange juice',
     calories: 450,
-    image: 'https://example.com/eggs.jpg', // Replace with actual egg image URL
+    image: require('../assets/images/eggs.png'),
   },
   {
     id: '2',
     title: 'Lunch at Sweetgreen',
     description: 'Chicken pesto salad with veggies',
     calories: 500,
-    image: 'https://example.com/salad.jpg', // Replace with actual salad image URL
+    image: require('../assets/images/cobb-salad.png'),
   },
   {
     id: '3',
     title: 'Dinner at home',
     description: 'Pork stir fried with bok choy',
     calories: 600,
-    image: 'https://example.com/pork.jpg', // Replace with actual pork image URL
+    image: require('../assets/images/pork-stir-fry.jpg'),
   },
 ];
 
-const MealCard = ({ meal }: { meal: { id: string; title: string; description: string; calories: number; image: string } }) => {
+const MealCard = ({ meal }: { meal: { id: string; title: string; description: string; calories: number; image: any } }) => {
   const theme = useTheme();
 
   return (
     <View style={styles.card}>
       <Image
-        source={{ uri: meal.image }}
+        source={meal.image}
         style={[styles.mealImage, { borderRadius: theme.shapes.borderRadius }]}
       />
       <View style={styles.mealInfo}>
