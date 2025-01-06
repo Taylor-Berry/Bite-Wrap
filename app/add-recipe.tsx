@@ -36,12 +36,17 @@ export default function AddRecipeScreen() {
 
   const handleSave = async () => {
     if (title && ingredientsList.some(ingredient => ingredient.trim() !== '')) {
+      const imageUrl = ingredientsImage || DEFAULT_IMAGE;
+      
+      console.log('Saving recipe with image:', imageUrl);
+      
       const newRecipe = {
         id: Date.now().toString(),
         name: title,
         calories: 0,
         time: '30 min',
-        image: ingredientsImage || DEFAULT_IMAGE,
+        image: imageUrl,
+        thumbnailImage: imageUrl, // Add thumbnail image
         ingredients: ingredientsList.filter(i => i.trim() !== '').join('\n'),
         instructions,
       };
@@ -63,17 +68,19 @@ export default function AddRecipeScreen() {
 
   const pickImage = async (type: 'recipe' | 'ingredients') => {
     let result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ['images'],
-        allowsEditing: true,
-        aspect: [4, 3],
-        quality: 1,
+      mediaTypes: ['images'],
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 0.5,
     });
 
     if (!result.canceled) {
+      const localUri = result.assets[0].uri;
+      
       if (type === 'recipe') {
-        setImage(result.assets[0].uri);
+        setImage(localUri);
       } else {
-        setIngredientsImage(result.assets[0].uri);
+        setIngredientsImage(localUri);
       }
     }
   };

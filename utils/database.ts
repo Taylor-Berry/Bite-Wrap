@@ -10,6 +10,7 @@ export interface Log {
     location: string;
     description: string;
     image?: string;
+    thumbnailImage?: string;
   }[];
 }
 
@@ -18,6 +19,7 @@ export interface Recipe {
   name: string;
   time: string;
   image: string;
+  thumbnailImage?: string;
 }
 
 const LOGS_KEY = 'logs';

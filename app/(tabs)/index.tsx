@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, ScrollView, StyleSheet, Image, TouchableOpacity, Modal, Dimensions } from 'react-native';
 import { useTheme } from '../../components/ThemeProvider';
 import { Ionicons } from '@expo/vector-icons';
@@ -8,7 +8,6 @@ import { format } from 'date-fns';
 import { useRouter } from 'expo-router';
 import { Log, getLogsByDate, deleteLogMeal } from '../../utils/database';
 import { useFocusEffect } from '@react-navigation/native';
-import { Swipeable } from 'react-native-gesture-handler';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -25,43 +24,44 @@ const MealCard = ({ meal, onDelete }: {
   },
   onDelete: (id: string) => void
 }) => {
+  console.log('MealCard - Received Image:', meal.image);
   const theme = useTheme();
+  const [imageError, setImageError] = useState(false);
 
   const title = meal.location.toLowerCase() === 'home'
-  ? `${meal.name} at Home`
-  : `${meal.mealType.charAt(0).toUpperCase() + meal.mealType.slice(1)} at ${meal.location}`;
-
-  const renderRightActions = () => {
-    return (
-      <TouchableOpacity
-        style={{
-          backgroundColor: 'red',
-          justifyContent: 'center',
-          alignItems: 'flex-end',
-          padding: 20,
-          width: 100,
-        }}
-        onPress={() => onDelete(meal.id)}
-      >
-        <Text style={{ color: 'white' }}>Delete</Text>
-      </TouchableOpacity>
-    );
-  };
+    ? `${meal.name} at Home`
+    : `${meal.mealType.charAt(0).toUpperCase() + meal.mealType.slice(1)} at ${meal.location}`;
 
   return (
-    <Swipeable renderRightActions={renderRightActions}>
-      <View style={styles.card}>
+    <View style={styles.card}>
+      <View style={styles.imageContainer}>
         <Image
-          source={{ uri: meal.image || DEFAULT_MEAL_IMAGE }}
+          source={{ uri: imageError ? DEFAULT_MEAL_IMAGE : (meal.image || DEFAULT_MEAL_IMAGE) }}
           style={styles.mealImage}
           defaultSource={{ uri: DEFAULT_MEAL_IMAGE }}
+          resizeMode="cover"
+          onError={() => setImageError(true)}
         />
-        <View style={styles.mealInfo}>
-          <Text style={styles.mealTitle}>{title}</Text>
-          <Text style={styles.mealDescription}>{meal.description}</Text>
-        </View>
       </View>
-    </Swipeable>
+      <View style={styles.mealInfo}>
+        <Text style={styles.mealTitle}>{title}</Text>
+        <Text style={styles.mealDescription}>{meal.description}</Text>
+      </View>
+      <TouchableOpacity style={styles.deleteButton} onPress={() => onDelete(meal.id)}>
+        <Ionicons name="trash-outline" size={24} color="white" />
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+const AddMealCard = ({ mealType, onPress }: { mealType: string; onPress: () => void }) => {
+  const theme = useTheme();
+
+  return (
+    <TouchableOpacity style={styles.addMealCard} onPress={onPress}>
+      <Ionicons name="add-circle-outline" size={48} color={theme.colors.text} />
+      <Text style={styles.addMealText}>{mealType}</Text>
+    </TouchableOpacity>
   );
 };
 
@@ -71,22 +71,22 @@ export default function HomeScreen() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [showCalendar, setShowCalendar] = useState(false);
   const [logs, setLogs] = useState<Log | undefined>(undefined);
+  const [refreshKey, setRefreshKey] = useState(0);
 
-  useFocusEffect(
-    React.useCallback(() => {
-      fetchLogs();
-    }, [selectedDate])
-  );
-
-  const fetchLogs = async () => {
+  const fetchLogs = useCallback(async () => {
     const dateString = format(selectedDate, 'yyyy-MM-dd');
     const fetchedLogs = await getLogsByDate(dateString);
-    if (fetchedLogs) {
-      setLogs(fetchedLogs);
-    } else {
-      setLogs({ id: dateString, date: dateString, meals: [] });
-    }
-  };
+    console.log('Fetched logs:', JSON.stringify(fetchedLogs, null, 2));
+    setLogs(fetchedLogs || { id: dateString, date: dateString, meals: [] });
+    setLogs(fetchedLogs ? { ...fetchedLogs } : { id: dateString, date: dateString, meals: [] });
+    setRefreshKey(prevKey => prevKey + 1);
+  }, [selectedDate]);
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchLogs();
+    }, [fetchLogs])
+  );
 
   const handleDateChange = (day: any) => {
     const selectedDate = new Date(day.year, day.month - 1, day.day);
@@ -102,40 +102,44 @@ export default function HomeScreen() {
     }
   };
 
+  const handleAddMeal = (mealType: string) => {
+    router.push({
+      pathname: '/log',
+      params: { date: format(selectedDate, 'yyyy-MM-dd'), mealType }
+    });
+  };
+
   const headerTitle = selectedDate.toDateString() === new Date().toDateString() 
     ? 'Today' 
     : format(selectedDate, 'MMMM d, yyyy');
 
+  const mealTypes = ['Breakfast', 'Lunch', 'Dinner'];
+
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <View style={styles.header}>
-        <TouchableOpacity 
-          onPress={() => router.push({
-            pathname: '/log',
-            params: { date: format(selectedDate, 'yyyy-MM-dd') }
-          })}
-        >
-          <Text>
-            <Ionicons name="add" size={24} color={theme.colors.text} />
-          </Text>
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>{headerTitle}</Text>
         <TouchableOpacity onPress={() => setShowCalendar(true)}>
           <Ionicons name="calendar" size={24} color={theme.colors.text} />
         </TouchableOpacity>
+        <Text style={styles.headerTitle}>{headerTitle}</Text>
+        <View style={{ width: 24 }}>
+          <Text> </Text>
+        </View>
       </View>
       
       <ScrollView
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}
+        key={refreshKey}
       >
-        {logs && logs.meals.length > 0 ? (
-          logs.meals.map((meal) => (
-            <MealCard key={meal.id} meal={meal} onDelete={handleDeleteMeal} />
-          ))
-        ) : (
-          <Text style={styles.noMealsText}>No meals logged for this day.</Text>
-        )}
+        {mealTypes.map((mealType) => {
+          const meal = logs?.meals.find(m => m.mealType.toLowerCase() === mealType.toLowerCase());
+          return meal ? (
+            <MealCard key={`${meal.id}-${refreshKey}`} meal={meal} onDelete={handleDeleteMeal} />
+          ) : (
+            <AddMealCard key={`${mealType}-${refreshKey}`} mealType={mealType} onPress={() => handleAddMeal(mealType.toLowerCase())} />
+          );
+        })}
       </ScrollView>
 
       <Modal
@@ -212,10 +216,14 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     overflow: 'hidden',
   },
-  mealImage: {
+  imageContainer: {
     width: '100%',
     height: 200,
     backgroundColor: '#f0f0f0',
+  },
+  mealImage: {
+    width: '100%',
+    height: '100%',
   },
   mealInfo: {
     padding: 16,
@@ -230,9 +238,27 @@ const styles = StyleSheet.create({
     color: '#666',
     marginBottom: 4,
   },
-  calories: {
-    fontSize: 16,
-    color: '#666',
+  deleteButton: {
+    position: 'absolute',
+    top: 8,
+    right: 8,
+    backgroundColor: 'rgba(255, 0, 0, 0.7)',
+    borderRadius: 20,
+    padding: 8,
+  },
+  addMealCard: {
+    marginBottom: 24,
+    backgroundColor: 'white',
+    borderRadius: 16,
+    padding: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 200,
+  },
+  addMealText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginTop: 8,
   },
   centeredView: {
     flex: 1,
@@ -270,11 +296,4 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
-  noMealsText: {
-    textAlign: 'center',
-    marginTop: 20,
-    fontSize: 16,
-    color: '#666',
-  },
 });
-

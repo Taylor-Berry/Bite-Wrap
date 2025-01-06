@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   View, 
   Text, 
@@ -15,10 +15,16 @@ import { useTheme } from '../components/ThemeProvider';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter, useLocalSearchParams } from 'expo-router';
-import { addLog, addRecipe, getRecipes, deleteRecipe, Recipe } from '../utils/database';
+import { addLog, addRecipe, getRecipes, deleteRecipe, Recipe, getLogsByDate } from '../utils/database';
 import { format } from 'date-fns';
 import { MealTypeModal } from '../components/MealTypeModal';
 import { Swipeable } from 'react-native-gesture-handler';
+
+const addTimestampToImageUrl = (url: string) => {
+  if (!url) return url;
+  const separator = url.includes('?') ? '&' : '?';
+  return `${url}${separator}t=${Date.now()}`;
+};
 
 const DEFAULT_IMAGE = 'https://placehold.co/600x400/png';
 
@@ -26,12 +32,10 @@ type Tab = 'search' | 'recipe';
 
 const PopularFoodCard = ({ 
   name, 
-  calories,
   icon = 'leaf-outline',
   onPress
 }: { 
   name: string; 
-  calories: number;
   icon?: string;
   onPress: () => void;
 }) => {
@@ -84,6 +88,7 @@ const RestaurantCard = ({
   onPress: () => void;
 }) => {
   const theme = useTheme();
+  const [imageError, setImageError] = useState(false);
   
   return (
     <Pressable 
@@ -91,8 +96,9 @@ const RestaurantCard = ({
       onPress={onPress}
     >
       <Image 
-        source={image}
+        source={imageError ? { uri: DEFAULT_IMAGE } : image}
         style={[styles.restaurantImage, { borderRadius: theme.shapes.borderRadius }]} 
+        onError={() => setImageError(true)}
       />
       <Text style={[theme.typography.body, styles.restaurantName]}>{name}</Text>
     </Pressable>
@@ -111,6 +117,9 @@ const RecipeCard = ({
   const theme = useTheme();
   const [rightRadius, setRightRadius] = useState(theme.shapes.borderRadius);
   const [isSwiping, setIsSwiping] = useState(false);
+  const swipeThreshold = useRef(false);
+  const swipeTimeout = useRef<NodeJS.Timeout>();
+  const [imageError, setImageError] = useState(false);
 
   const renderRightActions = (progress: any, dragX: any) => {
     const trans = dragX.interpolate({
@@ -150,8 +159,25 @@ const RecipeCard = ({
     );
   };
 
+  const handleSwipeStart = () => {
+    swipeThreshold.current = true;
+    setIsSwiping(true);
+    
+    // Clear any existing timeout
+    if (swipeTimeout.current) {
+      clearTimeout(swipeTimeout.current);
+    }
+  };
+
+  const handleSwipeEnd = () => {
+    swipeTimeout.current = setTimeout(() => {
+      swipeThreshold.current = false;
+      setIsSwiping(false);
+    }, 250); // Wait 250ms before allowing press events
+  };
+
   const handlePress = () => {
-    if (!isSwiping) {
+    if (!swipeThreshold.current) {
       onPress();
     }
   };
@@ -159,8 +185,10 @@ const RecipeCard = ({
   return (
     <Swipeable
       renderRightActions={renderRightActions}
-      onSwipeableWillOpen={() => setIsSwiping(true)}
-      onSwipeableWillClose={() => setIsSwiping(false)}
+      onSwipeableWillOpen={handleSwipeStart}
+      onSwipeableWillClose={handleSwipeEnd}
+      onSwipeableOpen={handleSwipeStart}
+      onSwipeableClose={handleSwipeEnd}
     >
       <Pressable 
         style={[
@@ -174,12 +202,14 @@ const RecipeCard = ({
         onPress={handlePress}
       >
         <Image 
-          source={{ uri: recipe.image }}
+          source={{ uri: imageError ? DEFAULT_IMAGE : addTimestampToImageUrl(recipe.thumbnailImage || recipe.image) }}
           defaultSource={{ uri: DEFAULT_IMAGE }}
           style={[
             styles.recipeImage,
             { borderTopLeftRadius: theme.shapes.borderRadius, borderBottomLeftRadius: theme.shapes.borderRadius }
           ]}
+          resizeMode="cover"
+          onError={() => setImageError(true)}
         />
         <View style={styles.recipeInfo}>
           <Text style={[theme.typography.body, styles.recipeName]}>{recipe.name}</Text>
@@ -192,7 +222,7 @@ const RecipeCard = ({
 export default function LogScreen() {
   const theme = useTheme();
   const router = useRouter();
-  const { date } = useLocalSearchParams<{ date: string }>();
+  const { date, mealType } = useLocalSearchParams<{ date: string, mealType?: string }>();
   const [activeTab, setActiveTab] = useState<Tab>('search');
   const [searchQuery, setSearchQuery] = useState('');
   const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -215,35 +245,104 @@ export default function LogScreen() {
 
   const tabs: Tab[] = ['search', 'recipe'];
 
-  const handleAddMeal = (name: string, image?: any, location?: string) => {
-    setSelectedMeal({ name, image, location });
-    setIsMealTypeModalVisible(true);
+  const handleAddMeal = async (name: string, image?: any, location?: string) => {
+    // Convert local image assets to URI if needed
+    let imageUri = typeof image === 'number' 
+      ? Image.resolveAssetSource(image).uri 
+      : image;
+
+    // If it's a recipe (location is 'home'), use the full-size image
+    if (location === 'home') {
+      const recipe = recipes.find(r => r.name === name);
+      if (recipe) {
+        imageUri = recipe.image;  // Use the full-size image
+      }
+    }
+
+    const meal = { 
+      name, 
+      image: imageUri,
+      thumbnailImage: imageUri, // We'll keep this for consistency, but use the full-size image
+      location 
+    };
+    
+    if (mealType) {
+      const now = new Date();
+      const newMeal = {
+        id: now.getTime().toString(),
+        name: meal.name,
+        time: format(now, 'HH:mm'),
+        mealType: mealType as 'breakfast' | 'lunch' | 'dinner',
+        location: meal.location || 'home',
+        description: '',
+        image: meal.image,
+        thumbnailImage: meal.thumbnailImage,
+        isRecipe: meal.location === 'home',
+      };
+
+      const existingLog = await getLogsByDate(date);
+      if (existingLog) {
+        existingLog.meals.push(newMeal);
+        await addLog(existingLog);
+      } else {
+        const newLog = {
+          id: date,
+          date: date,
+          meals: [newMeal]
+        };
+        await addLog(newLog);
+      }
+      router.back();
+    } else {
+      setSelectedMeal(meal);
+      setIsMealTypeModalVisible(true);
+    }
   };
 
-  const handleAddMealWithType = async (mealType: 'breakfast' | 'lunch' | 'dinner', description: string) => {
-    if (selectedMeal) {
-      const now = new Date();
-      const location = selectedMeal.location || 'home';
-      const isRecipe = location === 'home';
-      
-      const newLog = {
-        id: now.getTime().toString(),
-        date: date,
-        meals: [{
-          id: now.getTime().toString(),
-          name: selectedMeal.name,
-          time: format(now, 'HH:mm'),
-          mealType,
-          location,
-          description,
-          image: selectedMeal.image,
-          isRecipe,
-        }]
-      };
-      await addLog(newLog);
-      Alert.alert('Meal added successfully!');
-      setSelectedMeal(null);
+  const handleAddMealWithType = async (
+    mealType: 'breakfast' | 'lunch' | 'dinner', 
+    description: string
+  ) => {
+    if (!selectedMeal) return;
+
+    let imageUri = addTimestampToImageUrl(selectedMeal.image);
+
+    // If it's a recipe (location is 'home'), use the full-size image
+    if (selectedMeal.location === 'home') {
+      const recipe = recipes.find(r => r.name === selectedMeal.name);
+      if (recipe) {
+        imageUri = recipe.image;  // Use the full-size image
+      }
     }
+
+    const now = new Date();
+    const newLog = {
+      id: now.getTime().toString(),
+      date: date,
+      meals: [{
+        id: now.getTime().toString(),
+        name: selectedMeal.name,
+        time: format(now, 'HH:mm'),
+        mealType,
+        location: selectedMeal.location || 'home',
+        description,
+        image: imageUri,
+        thumbnailImage: imageUri, // We'll keep this for consistency, but use the full-size image
+        isRecipe: selectedMeal.location === 'home',
+      }]
+    };
+
+    // Force an update of the logs in storage
+    const existingLog = await getLogsByDate(date);
+    if (existingLog) {
+      // If a log for this date already exists, append the new meal
+      existingLog.meals.push(newLog.meals[0]);
+      await addLog(existingLog);
+    } else {
+      // If no log exists for this date, add the new log
+      await addLog(newLog);
+    }
+    router.back();  // Home screen will refresh automatically
   };
 
   const handleDeleteRecipe = async (recipeId: string) => {
@@ -274,22 +373,18 @@ export default function LogScreen() {
         <View style={styles.foodGrid}>
           <PopularFoodCard 
             name="TacoBell" 
-            calories={120} 
             onPress={() => handleAddMeal("TacoBell", null, "TacoBell")} 
           />
           <PopularFoodCard 
             name="Zaxby's" 
-            calories={30} 
             onPress={() => handleAddMeal("Zaxby's",  null, "Zaxby's")} 
           />
           <PopularFoodCard 
             name="Cook Out" 
-            calories={50} 
             onPress={() => handleAddMeal("Cook Out", null, "Cook Out")} 
           />
           <PopularFoodCard 
             name="McDonald's" 
-            calories={200} 
             onPress={() => handleAddMeal("McDonald's", null, "McDonald's")} 
           />
         </View>
@@ -349,7 +444,11 @@ export default function LogScreen() {
           <RecipeCard
             key={recipe.id}
             recipe={recipe}
-            onPress={() => handleAddMeal(recipe.name, recipe.image, "home")}
+            onPress={() => handleAddMeal(
+              recipe.name,
+              recipe.image,  // Pass the original image
+              "home"
+            )}
             onDelete={() => handleDeleteRecipe(recipe.id)}
           />
         ))}
@@ -360,7 +459,9 @@ export default function LogScreen() {
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <View style={styles.header}>
-        <Text style={theme.typography.header}>Log a meal</Text>
+        <Text style={theme.typography.header}>
+          {mealType ? `Log ${mealType}` : 'Log a meal'}
+        </Text>
         <TouchableOpacity onPress={() => router.back()}>
           <Text style={styles.doneButton}>Done</Text>
         </TouchableOpacity>
@@ -545,6 +646,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5F5F5',
     marginBottom: 12,
     overflow: 'hidden',
+    height: 80,
   },
   recipeImage: {
     width: 80,
@@ -583,7 +685,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: 80,
-    height: '100%',
+    height: 80,
+    marginBottom: 12,
   },
 });
 
