@@ -27,11 +27,11 @@ export function MealTypeModal({ isVisible, onClose, onSelect }: MealTypeModalPro
       onRequestClose={onClose}
     >
       <View style={styles.centeredView}>
-        <View style={[styles.modalView, { backgroundColor: theme.colors.background }]}>
-          <Text style={[theme.typography.title, styles.modalTitle]}>Add Meal Details</Text>
+        <View style={[styles.modalView, { backgroundColor: theme.theme.colors.background }]}>
+          <Text style={[theme.theme.typography.title, styles.modalTitle]}>Add Meal Details</Text>
           
           <View style={styles.inputContainer}>
-            <Text style={theme.typography.body}>Description</Text>
+            <Text style={theme.theme.typography.body}>Description</Text>
             <TextInput
               style={styles.input}
               value={description}
@@ -41,21 +41,21 @@ export function MealTypeModal({ isVisible, onClose, onSelect }: MealTypeModalPro
             />
           </View>
 
-          <Text style={[theme.typography.body, styles.sectionTitle]}>Select Meal Type</Text>
+          <Text style={[theme.theme.typography.body, styles.sectionTitle]}>Select Meal Type</Text>
           {mealTypes.map((type) => (
             <TouchableOpacity
               key={type}
-              style={[styles.button, { backgroundColor: theme.colors.primary }]}
+              style={[styles.button, { backgroundColor: theme.theme.colors.primary }]}
               onPress={() => handleSelect(type)}
             >
-              <Text style={[theme.typography.body, styles.buttonText]}>
+              <Text style={[theme.theme.typography.body, styles.buttonText]}>
                 {type.charAt(0).toUpperCase() + type.slice(1)}
               </Text>
             </TouchableOpacity>
           ))}
           
           <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-            <Text style={[theme.typography.body, styles.closeButtonText]}>Cancel</Text>
+            <Text style={[theme.theme.typography.body, styles.closeButtonText]}>Cancel</Text>
           </TouchableOpacity>
         </View>
       </View>

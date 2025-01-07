@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-nati
 import { useTheme } from '../../components/ThemeProvider';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 
 type SettingItemProps = {
   icon: string;
@@ -20,12 +21,12 @@ const SettingItem = ({ icon, title, subtitle, onPress }: SettingItemProps) => {
       onPress={onPress}
     >
       <View style={styles.settingIconContainer}>
-        <Ionicons name={icon as any} size={24} color={theme.colors.text} />
+        <Ionicons name={icon as any} size={24} color={theme.theme.colors.text} />
       </View>
       <View style={styles.settingContent}>
-        <Text style={[theme.typography.body, styles.settingTitle]}>{title}</Text>
+        <Text style={[theme.theme.typography.body, styles.settingTitle]}>{title}</Text>
         {subtitle && (
-          <Text style={[theme.typography.caption, styles.settingSubtitle]}>
+          <Text style={[theme.theme.typography.caption, styles.settingSubtitle]}>
             {subtitle}
           </Text>
         )}
@@ -33,7 +34,7 @@ const SettingItem = ({ icon, title, subtitle, onPress }: SettingItemProps) => {
       <Ionicons 
         name="chevron-forward" 
         size={24} 
-        color={theme.colors.textSecondary} 
+        color={theme.theme.colors.textSecondary} 
       />
     </TouchableOpacity>
   );
@@ -43,7 +44,7 @@ const SectionHeader = ({ title }: { title: string }) => {
   const theme = useTheme();
   
   return (
-    <Text style={[theme.typography.title, styles.sectionHeader]}>
+    <Text style={[theme.theme.typography.title, styles.sectionHeader]}>
       {title}
     </Text>
   );
@@ -51,11 +52,13 @@ const SectionHeader = ({ title }: { title: string }) => {
 
 export default function ProfileScreen() {
   const theme = useTheme();
+  const router = useRouter();
+  const { isDark, toggleTheme } = useTheme();
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
+    <SafeAreaView style={[styles.container, { backgroundColor: theme.theme.colors.background }]}>
       <View style={styles.header}>
-        <Text style={[theme.typography.header, styles.headerTitle]}>Settings</Text>
+        <Text style={[theme.theme.typography.header, styles.headerTitle]}>Settings</Text>
       </View>
 
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
@@ -81,6 +84,14 @@ export default function ProfileScreen() {
           onPress={() => {}}
         />
 
+        <SectionHeader title="Appearance" />
+        <SettingItem
+          icon="moon-outline"
+          title="Dark Mode"
+          subtitle={isDark ? "On" : "Off"}
+          onPress={toggleTheme}
+        />
+
         <SectionHeader title="Meal logging" />
         <SettingItem
           icon="time-outline"
@@ -101,7 +112,10 @@ export default function ProfileScreen() {
           onPress={() => {}}
         />
 
-        <TouchableOpacity style={styles.logoutButton}>
+        <TouchableOpacity 
+          style={styles.logoutButton}
+          onPress={() => router.replace('/login')}
+        >
           <Text style={styles.logoutText}>Log Out</Text>
         </TouchableOpacity>
       </ScrollView>

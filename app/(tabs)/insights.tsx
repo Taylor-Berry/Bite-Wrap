@@ -7,12 +7,12 @@ export default function InsightsScreen() {
   const theme = useTheme();
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
+    <SafeAreaView style={[styles.container, { backgroundColor: theme.theme.colors.background }]}>
       <View style={styles.header}>
-        <Text style={theme.typography.header}>Insights</Text>
+        <Text style={theme.theme.typography.header}>Insights</Text>
       </View>
       <View style={styles.content}>
-        <Text style={theme.typography.body}>Your meal insights and statistics will appear here.</Text>
+        <Text style={theme.theme.typography.body}>Your meal insights and statistics will appear here.</Text>
       </View>
     </SafeAreaView>
   );

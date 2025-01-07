@@ -36,17 +36,12 @@ export default function AddRecipeScreen() {
 
   const handleSave = async () => {
     if (title && ingredientsList.some(ingredient => ingredient.trim() !== '')) {
-      const imageUrl = ingredientsImage || DEFAULT_IMAGE;
-      
-      console.log('Saving recipe with image:', imageUrl);
-      
       const newRecipe = {
         id: Date.now().toString(),
         name: title,
         calories: 0,
         time: '30 min',
-        image: imageUrl,
-        thumbnailImage: imageUrl, // Add thumbnail image
+        image: ingredientsImage || DEFAULT_IMAGE,
         ingredients: ingredientsList.filter(i => i.trim() !== '').join('\n'),
         instructions,
       };
@@ -68,19 +63,17 @@ export default function AddRecipeScreen() {
 
   const pickImage = async (type: 'recipe' | 'ingredients') => {
     let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ['images'],
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 0.5,
+        mediaTypes: ['images'],
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
     });
 
     if (!result.canceled) {
-      const localUri = result.assets[0].uri;
-      
       if (type === 'recipe') {
-        setImage(localUri);
+        setImage(result.assets[0].uri);
       } else {
-        setIngredientsImage(localUri);
+        setIngredientsImage(result.assets[0].uri);
       }
     }
   };
@@ -88,10 +81,10 @@ export default function AddRecipeScreen() {
   const isCreateButtonEnabled = title.trim() !== '' && ingredientsList.some(ingredient => ingredient.trim() !== '');
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
+    <SafeAreaView style={[styles.container, { backgroundColor: theme.theme.colors.background }]}>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
-          <Ionicons name="arrow-back" size={24} color={theme.colors.text} />
+          <Ionicons name="arrow-back" size={24} color={theme.theme.colors.text} />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>New Recipe</Text>
         <View style={styles.backButton} />

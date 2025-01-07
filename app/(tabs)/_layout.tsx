@@ -28,10 +28,10 @@ export default function TabsLayout() {
 
             return <Ionicons name={iconName as any} size={24} color={color} />;
           },
-          tabBarActiveTintColor: theme.colors.primary,
-          tabBarInactiveTintColor: theme.colors.textSecondary,
+          tabBarActiveTintColor: theme.theme.colors.primary,
+          tabBarInactiveTintColor: theme.theme.colors.textSecondary,
           tabBarStyle: {
-            backgroundColor: theme.colors.background,
+            backgroundColor: theme.theme.colors.background,
             borderTopWidth: 0,
             height: 85,
             paddingBottom: 20,
