@@ -9,7 +9,8 @@ import {
   Image,
   Pressable,
   Alert,
-  Animated
+  Animated,
+  Dimensions
 } from 'react-native';
 import { useTheme } from '../components/ThemeProvider';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -17,9 +18,16 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { addLog, addRecipe, getRecipes, deleteRecipe, Recipe } from '../utils/database';
 import { format } from 'date-fns';
-import { MealTypeModal } from '../components/MealTypeModal';
+// import { MealTypeModal } from '../components/MealTypeModal';
 import { Swipeable } from 'react-native-gesture-handler';
 import { useFocusEffect } from '@react-navigation/native';
+import {
+  GestureHandlerRootView,
+  LongPressGestureHandler,
+  State,
+} from 'react-native-gesture-handler';
+import { MealActionOverlay } from '../components/MealActionOverlay';
+import { addLog as addLogFunc, getLogsByDate, deleteLogMeal, Log } from '../utils/database';
 
 const DEFAULT_IMAGE = 'https://placehold.co/600x400/png';
 
@@ -103,40 +111,55 @@ const RestaurantCard = ({
 const RecipeCard = ({
   recipe,
   onPress,
-  onDelete
+  onDelete,
+  onLongPress,
 }: {
   recipe: Recipe;
   onPress: () => void;
   onDelete: () => void;
+  onLongPress: (event: any) => void;
 }) => {
   const theme = useTheme();
 
   return (
-    <Pressable 
-      style={[styles.recipeCard, { borderRadius: theme.theme.shapes.borderRadius }]}
-      onPress={onPress}
+    <LongPressGestureHandler
+      onHandlerStateChange={({ nativeEvent }) => {
+        if (nativeEvent.state === State.ACTIVE) {
+          onLongPress({
+            absoluteX: nativeEvent.x,
+            absoluteY: nativeEvent.y
+          });
+        }
+      }}
+      minDurationMs={500}
     >
-      <View style={styles.imageContainer}>
-        <Image 
-          source={{ uri: recipe.image }}
-          style={styles.recipeImage}
-          defaultSource={{ uri: DEFAULT_IMAGE }}
-          resizeMode="cover"
-        />
-        <TouchableOpacity 
-          style={styles.deleteButton}
-          onPress={(e) => {
-            e.stopPropagation();  // Prevent triggering the parent's onPress
-            onDelete();
-          }}
+      <View style={styles.recipeCardContainer}>
+        <Pressable 
+          style={[styles.recipeCard, { borderRadius: theme.theme.shapes.borderRadius }]}
+          onPress={onPress}
         >
-          <Ionicons name="trash-outline" size={24} color="white" />
-        </TouchableOpacity>
+          <Image 
+            source={{ uri: recipe.image }}
+            style={styles.recipeThumb}
+            defaultSource={{ uri: DEFAULT_IMAGE }}
+            resizeMode="cover"
+          />
+          <View style={styles.recipeInfo}>
+            <Text style={[theme.theme.typography.body, styles.recipeName]} numberOfLines={2}>{recipe.name}</Text>
+            <Text style={[theme.theme.typography.caption, styles.recipeTime]}>{recipe.time}</Text>
+          </View>
+          <TouchableOpacity 
+            style={styles.deleteButton}
+            onPress={(e) => {
+              e.stopPropagation();
+              onDelete();
+            }}
+          >
+            <Ionicons name="trash-outline" size={18} color="white" />
+          </TouchableOpacity>
+        </Pressable>
       </View>
-      <View style={styles.recipeInfo}>
-        <Text style={[theme.theme.typography.body, styles.recipeName]}>{recipe.name}</Text>
-      </View>
-    </Pressable>
+    </LongPressGestureHandler>
   );
 };
 
@@ -148,23 +171,32 @@ export default function LogScreen() {
   const [searchQuery, setSearchQuery] = useState('');
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [filteredRecipes, setFilteredRecipes] = useState<Recipe[]>([]);
-  const [isMealTypeModalVisible, setIsMealTypeModalVisible] = useState(false);
+  // const [isMealTypeModalVisible, setIsMealTypeModalVisible] = useState(false);
   const [selectedMeal, setSelectedMeal] = useState<{
     name: string;
     image?: any;
     location?: string;
   } | null>(null);
+  const [actionOverlayVisible, setActionOverlayVisible] = useState(false);
+  const [actionPosition, setActionPosition] = useState({ x: 0, y: 0 });
+  const [existingLogs, setExistingLogs] = useState<Log[]>([]);
 
   useFocusEffect(
     React.useCallback(() => {
       fetchRecipes();
-    }, [])
+      fetchExistingLogs();
+    }, [date])
   );
 
   const fetchRecipes = async () => {
     const fetchedRecipes = await getRecipes();
     setRecipes(fetchedRecipes);
     setFilteredRecipes(fetchedRecipes);
+  };
+
+  const fetchExistingLogs = async () => {
+    const logs = await getLogsByDate(date);
+    setExistingLogs(logs);
   };
 
   const handleSearch = (query: string) => {
@@ -200,37 +232,38 @@ export default function LogScreen() {
       location 
     });
 
-    if (mealType) {
-      handleAddMealWithType(mealType as 'breakfast' | 'lunch' | 'dinner', '');
-    } else {
-      setIsMealTypeModalVisible(true);
-    }
+    // Show action overlay at the center of the screen
+    setActionPosition({
+      x: Dimensions.get('window').width / 2,
+      y: Dimensions.get('window').height / 2,
+    });
+    setActionOverlayVisible(true);
   };
 
-  const handleAddMealWithType = async (mealType: 'breakfast' | 'lunch' | 'dinner', description: string) => {
+  const handleAddMealWithType = async (mealType: 'breakfast' | 'lunch' | 'dinner') => {
     if (selectedMeal) {
       const now = new Date();
       const location = selectedMeal.location || 'home';
       const isRecipe = location === 'home';
       
-      const newLog = {
+      const newLog: Log = {
         id: now.getTime().toString(),
         date: date,
-        meals: [{
+        mealType: mealType,
+        meal: {
           id: now.getTime().toString(),
           name: selectedMeal.name,
-          time: format(now, 'HH:mm'),
-          mealType,
           location,
-          description,
-          image: selectedMeal.image, 
-          isRecipe,
-        }]
+          description: '',
+          image: selectedMeal.image,
+        }
       };
-      await addLog(newLog);
+
+      await addLogFunc(newLog);
       Alert.alert('Meal added successfully!');
       setSelectedMeal(null);
-      router.back();
+      setActionOverlayVisible(false);
+      fetchExistingLogs();
     }
   };
 
@@ -253,6 +286,22 @@ export default function LogScreen() {
         }
       ]
     );
+  };
+
+  const handleLongPress = (event: any, meal: { name: string; image?: any; location?: string }) => {
+    const cardWidth = 200; // Approximate width of the RecipeCard
+    const cardHeight = 250; // Approximate height of the RecipeCard
+    setActionPosition({
+      x: event.absoluteX - cardWidth / 2,
+      y: event.absoluteY - cardHeight / 2,
+    });
+    setSelectedMeal(meal);
+    setActionOverlayVisible(true);
+  };
+
+  const handleDeleteLog = async (mealType: string) => {
+    await deleteLogMeal(date, mealType);
+    fetchExistingLogs();
   };
 
   const renderSearchContent = () => (
@@ -332,18 +381,24 @@ export default function LogScreen() {
   const renderRecipeContent = () => (
     <View style={styles.section}>
       <Text style={theme.theme.typography.title}>Recipes</Text>
-      <View style={styles.recipeList}>
+      <View style={styles.recipeGrid}>
         {filteredRecipes.map((recipe) => (
           <RecipeCard
             key={recipe.id}
             recipe={recipe}
             onPress={() => handleAddMeal(recipe.name, recipe.image, "home")}
             onDelete={() => handleDeleteRecipe(recipe.id)}
+            onLongPress={(event) => handleLongPress(event, {
+              name: recipe.name,
+              image: recipe.image,
+              location: "home"
+            })}
           />
         ))}
       </View>
     </View>
   );
+
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: theme.theme.colors.background }]}>
@@ -402,10 +457,16 @@ export default function LogScreen() {
         </TouchableOpacity>
       )}
 
-      <MealTypeModal
+      {/* <MealTypeModal
         isVisible={isMealTypeModalVisible}
         onClose={() => setIsMealTypeModalVisible(false)}
         onSelect={handleAddMealWithType}
+      /> */}
+      <MealActionOverlay
+        visible={actionOverlayVisible}
+        onSelectMealType={handleAddMealWithType}
+        onClose={() => setActionOverlayVisible(false)}
+        existingLogs={existingLogs}
       />
     </SafeAreaView>
   );
@@ -527,38 +588,51 @@ const styles = StyleSheet.create({
   restaurantName: {
     marginBottom: 0,
   },
-  recipeList: {
-    marginTop: 12,
+  recipeCardContainer: {
+    width: '48%',
+    marginBottom: 16,
   },
   recipeCard: {
-    marginBottom: 24,
     backgroundColor: 'white',
     overflow: 'hidden',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.23,
+    shadowRadius: 2.62,
+    elevation: 4,
   },
-  imageContainer: {
-    position: 'relative',
+  recipeThumb: {
     width: '100%',
-    height: 200,
-  },
-  recipeImage: {
-    width: '100%',
-    height: '100%',
+    height: 120,
   },
   recipeInfo: {
-    padding: 16,
+    padding: 8,
   },
   recipeName: {
-    fontSize: 20,
-    fontWeight: 'bold',
+    fontSize: 14,
+    fontWeight: '600',
     marginBottom: 4,
+  },
+  recipeTime: {
+    fontSize: 12,
+    color: '#666',
+  },
+  recipeGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    marginTop: 12,
   },
   deleteButton: {
     position: 'absolute',
-    top: 12,
-    right: 12,
+    top: 4,
+    right: 4,
     backgroundColor: 'rgba(255, 0, 0, 0.7)',
-    borderRadius: 20,
-    padding: 8,
+    borderRadius: 12,
+    padding: 4,
   },
   fab: {
     position: 'absolute',
@@ -578,6 +652,26 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
+  },
+  existingLogsContainer: {
+    marginBottom: 24,
+    padding: 16,
+    backgroundColor: '#f5f5f5',
+    borderRadius: 8,
+  },
+  existingLogsTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  existingLogItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  existingLogText: {
+    fontSize: 16,
   },
 });
 

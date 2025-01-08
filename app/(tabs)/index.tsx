@@ -15,20 +15,13 @@ const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const DEFAULT_MEAL_IMAGE = 'https://placehold.co/600x400/png';
 
 const MealCard = ({ meal, onDelete }: { 
-  meal: { 
-    id: string; 
-    name: string; 
-    mealType: string;
-    location: string;
-    description: string;
-    image?: string;
-  },
-  onDelete: (id: string) => void
+  meal: Log['meal'] & { mealType: string };
+  onDelete: (mealType: string) => void
 }) => {
   const theme = useTheme();
 
   const title = meal.location.toLowerCase() === 'home'
-    ? `${meal.name} at Home`
+    ? `${meal.name} at Home for ${meal.mealType.charAt(0).toUpperCase() + meal.mealType.slice(1)}`
     : `${meal.mealType.charAt(0).toUpperCase() + meal.mealType.slice(1)} at ${meal.location}`;
 
   return (
@@ -45,7 +38,7 @@ const MealCard = ({ meal, onDelete }: {
         />
         <TouchableOpacity 
           style={styles.deleteButton}
-          onPress={() => onDelete(meal.id)}
+          onPress={() => onDelete(meal.mealType)}
         >
           <Ionicons name="trash-outline" size={24} color="white" />
         </TouchableOpacity>
@@ -63,7 +56,7 @@ export default function HomeScreen() {
   const router = useRouter();
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [showCalendar, setShowCalendar] = useState(false);
-  const [logs, setLogs] = useState<Log | undefined>(undefined);
+  const [logs, setLogs] = useState<Log[]>([]);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -74,11 +67,7 @@ export default function HomeScreen() {
   const fetchLogs = async () => {
     const dateString = format(selectedDate, 'yyyy-MM-dd');
     const fetchedLogs = await getLogsByDate(dateString);
-    if (fetchedLogs) {
-      setLogs(fetchedLogs);
-    } else {
-      setLogs({ id: dateString, date: dateString, meals: [] });
-    }
+    setLogs(fetchedLogs);
   };
 
   const handleDateChange = (day: any) => {
@@ -87,17 +76,21 @@ export default function HomeScreen() {
     setShowCalendar(false);
   };
 
-  const handleDeleteMeal = async (mealId: string) => {
-    if (logs) {
-      const updatedMeals = logs.meals.filter(meal => meal.id !== mealId);
-      setLogs({ ...logs, meals: updatedMeals });
-      await deleteLogMeal(logs.date, mealId);
-    }
+  const handleDeleteMeal = async (mealType: string) => {
+    const updatedLogs = logs.filter(log => log.mealType !== mealType);
+    setLogs(updatedLogs);
+    await deleteLogMeal(format(selectedDate, 'yyyy-MM-dd'), mealType);
   };
 
   const headerTitle = selectedDate.toDateString() === new Date().toDateString() 
     ? 'Today' 
     : format(selectedDate, 'MMMM d, yyyy');
+
+  // Sort logs in the order: Breakfast, Lunch, Dinner
+  const sortedLogs = [...logs].sort((a, b) => {
+    const order = { breakfast: 1, lunch: 2, dinner: 3 };
+    return order[a.mealType as keyof typeof order] - order[b.mealType as keyof typeof order];
+  });
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: theme.theme.colors.background }]}>
@@ -122,9 +115,9 @@ export default function HomeScreen() {
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}
       >
-        {logs && logs.meals.length > 0 ? (
-          logs.meals.map((meal) => (
-            <MealCard key={meal.id} meal={meal} onDelete={handleDeleteMeal} />
+        {sortedLogs.length > 0 ? (
+          sortedLogs.map((log) => (
+            <MealCard key={log.id} meal={{...log.meal, mealType: log.mealType}} onDelete={() => handleDeleteMeal(log.mealType)} />
           ))
         ) : (
           <Text style={styles.noMealsText}>No meals logged for this day.</Text>
@@ -281,3 +274,4 @@ const styles = StyleSheet.create({
     padding: 8,
   },
 });
+

@@ -42,8 +42,13 @@ export default function AddRecipeScreen() {
         calories: 0,
         time: '30 min',
         image: ingredientsImage || DEFAULT_IMAGE,
-        ingredients: ingredientsList.filter(i => i.trim() !== '').join('\n'),
         instructions,
+        ingredients: ingredientsList.filter(i => i.trim() !== '').map(ingredient => ({
+          id: Date.now().toString() + Math.random(),
+          name: ingredient,
+          amount: '',
+          unit: ''
+        }))
       };
       await addRecipe(newRecipe);
       router.back();
