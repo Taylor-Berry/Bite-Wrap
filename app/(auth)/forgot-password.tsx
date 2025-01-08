@@ -11,7 +11,7 @@ import {
   Platform,
   Alert
 } from 'react-native';
-import { useTheme } from '../components/ThemeProvider';
+import { useTheme } from '../../components/ThemeProvider';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 

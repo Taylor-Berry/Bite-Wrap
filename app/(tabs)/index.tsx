@@ -35,9 +35,13 @@ const MealCard = ({ meal, onDelete }: {
     <View style={styles.card}>
       <View style={styles.imageContainer}>
         <Image
-          source={{ uri: meal.image || DEFAULT_MEAL_IMAGE }}
+          source={{ 
+            uri: meal.image || DEFAULT_MEAL_IMAGE,
+            cache: 'reload'
+          }}
           style={styles.mealImage}
           defaultSource={{ uri: DEFAULT_MEAL_IMAGE }}
+          resizeMode="cover"
         />
         <TouchableOpacity 
           style={styles.deleteButton}
@@ -108,7 +112,7 @@ export default function HomeScreen() {
             <Ionicons name="add" size={24} color={theme.theme.colors.text} />
           </Text>
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>{headerTitle}</Text>
+        <Text style={[styles.headerTitle, theme.theme.typography.header]}>{headerTitle}</Text>
         <TouchableOpacity onPress={() => setShowCalendar(true)}>
           <Ionicons name="calendar" size={24} color={theme.theme.colors.text} />
         </TouchableOpacity>
@@ -202,9 +206,9 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   mealImage: {
-    width: '100%',
     height: 200,
-    backgroundColor: '#f0f0f0',
+    width: '100%',
+    borderRadius: 16,
   },
   mealInfo: {
     padding: 16,

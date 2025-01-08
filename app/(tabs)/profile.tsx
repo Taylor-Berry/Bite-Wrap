@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import { useTheme } from '../../components/ThemeProvider';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+import { useAuth } from '../../components/AuthProvider';
 
 type SettingItemProps = {
   icon: string;
@@ -13,20 +14,20 @@ type SettingItemProps = {
 };
 
 const SettingItem = ({ icon, title, subtitle, onPress }: SettingItemProps) => {
-  const theme = useTheme();
+  const { theme, isDark } = useTheme();
   
   return (
     <TouchableOpacity 
       style={styles.settingItem} 
       onPress={onPress}
     >
-      <View style={styles.settingIconContainer}>
-        <Ionicons name={icon as any} size={24} color={theme.theme.colors.text} />
+      <View style={[styles.settingIconContainer, { backgroundColor: theme.colors.card }]}>
+        <Ionicons name={icon as any} size={24} color={isDark ? theme.colors.text : theme.colors.primary} />
       </View>
       <View style={styles.settingContent}>
-        <Text style={[theme.theme.typography.body, styles.settingTitle]}>{title}</Text>
+        <Text style={[theme.typography.body, styles.settingTitle, { color: theme.colors.text }]}>{title}</Text>
         {subtitle && (
-          <Text style={[theme.theme.typography.caption, styles.settingSubtitle]}>
+          <Text style={[theme.typography.caption, styles.settingSubtitle, { color: theme.colors.textSecondary }]}>
             {subtitle}
           </Text>
         )}
@@ -34,7 +35,7 @@ const SettingItem = ({ icon, title, subtitle, onPress }: SettingItemProps) => {
       <Ionicons 
         name="chevron-forward" 
         size={24} 
-        color={theme.theme.colors.textSecondary} 
+        color={theme.colors.textSecondary} 
       />
     </TouchableOpacity>
   );
@@ -54,6 +55,15 @@ export default function ProfileScreen() {
   const theme = useTheme();
   const router = useRouter();
   const { isDark, toggleTheme } = useTheme();
+  const { signOut } = useAuth();
+
+  const handleLogout = async () => {
+    try {
+      await signOut();
+    } catch (err: any) {
+      Alert.alert('Error signing out', err.message || 'Failed to sign out');
+    }
+  };
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: theme.theme.colors.background }]}>
@@ -114,7 +124,7 @@ export default function ProfileScreen() {
 
         <TouchableOpacity 
           style={styles.logoutButton}
-          onPress={() => router.replace('/login')}
+          onPress={handleLogout}
         >
           <Text style={styles.logoutText}>Log Out</Text>
         </TouchableOpacity>
@@ -151,7 +161,6 @@ const styles = StyleSheet.create({
   settingIconContainer: {
     width: 40,
     height: 40,
-    backgroundColor: '#F5F5F5',
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
@@ -174,7 +183,6 @@ const styles = StyleSheet.create({
   },
   logoutText: {
     fontSize: 18,
-    color: '#007AFF',
     fontWeight: '600',
   },
 });

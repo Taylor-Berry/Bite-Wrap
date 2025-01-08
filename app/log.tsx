@@ -110,104 +110,33 @@ const RecipeCard = ({
   onDelete: () => void;
 }) => {
   const theme = useTheme();
-  const [rightRadius, setRightRadius] = useState(theme.theme.shapes.borderRadius);
-  const [isSwiping, setIsSwiping] = useState(false);
-  const swipeThreshold = useRef(false);
-  const swipeTimeout = useRef<NodeJS.Timeout>();
-
-  const renderRightActions = (progress: any, dragX: any) => {
-    const trans = dragX.interpolate({
-      inputRange: [-100, 0],
-      outputRange: [1, 0],
-      extrapolate: 'clamp',
-    });
-    
-    progress.interpolate({
-      inputRange: [0, 1],
-      outputRange: [0, 1],
-      extrapolate: 'clamp',
-    }).addListener((value: number) => {
-      setRightRadius(theme.theme.shapes.borderRadius * (1 - value));
-    });
-
-    return (
-      <TouchableOpacity
-        style={[
-          styles.deleteButton,
-          { 
-            borderTopRightRadius: theme.theme.shapes.borderRadius,
-            borderBottomRightRadius: theme.theme.shapes.borderRadius,
-          }
-        ]}
-        onPress={onDelete}
-      >
-        <Animated.View
-          style={[
-            {
-              transform: [{ translateX: trans }],
-            },
-          ]}>
-          <Ionicons name="trash-outline" size={24} color="white" />
-        </Animated.View>
-      </TouchableOpacity>
-    );
-  };
-
-  const handleSwipeStart = () => {
-    swipeThreshold.current = true;
-    setIsSwiping(true);
-    
-    // Clear any existing timeout
-    if (swipeTimeout.current) {
-      clearTimeout(swipeTimeout.current);
-    }
-  };
-
-  const handleSwipeEnd = () => {
-    swipeTimeout.current = setTimeout(() => {
-      swipeThreshold.current = false;
-      setIsSwiping(false);
-    }, 250); // Wait 250ms before allowing press events
-  };
-
-  const handlePress = () => {
-    if (!swipeThreshold.current) {
-      onPress();
-    }
-  };
 
   return (
-    <Swipeable
-      renderRightActions={renderRightActions}
-      onSwipeableWillOpen={handleSwipeStart}
-      onSwipeableWillClose={handleSwipeEnd}
-      onSwipeableOpen={handleSwipeStart}
-      onSwipeableClose={handleSwipeEnd}
+    <Pressable 
+      style={[styles.recipeCard, { borderRadius: theme.theme.shapes.borderRadius }]}
+      onPress={onPress}
     >
-      <Pressable 
-        style={[
-          styles.recipeCard,
-          { 
-            borderRadius: theme.theme.shapes.borderRadius,
-            borderTopRightRadius: rightRadius,
-            borderBottomRightRadius: rightRadius,
-          }
-        ]}
-        onPress={handlePress}
-      >
+      <View style={styles.imageContainer}>
         <Image 
           source={{ uri: recipe.image }}
+          style={styles.recipeImage}
           defaultSource={{ uri: DEFAULT_IMAGE }}
-          style={[
-            styles.recipeImage,
-            { borderTopLeftRadius: theme.theme.shapes.borderRadius, borderBottomLeftRadius: theme.theme.shapes.borderRadius }
-          ]}
+          resizeMode="cover"
         />
-        <View style={styles.recipeInfo}>
-          <Text style={[theme.theme.typography.body, styles.recipeName]}>{recipe.name}</Text>
-        </View>
-      </Pressable>
-    </Swipeable>
+        <TouchableOpacity 
+          style={styles.deleteButton}
+          onPress={(e) => {
+            e.stopPropagation();  // Prevent triggering the parent's onPress
+            onDelete();
+          }}
+        >
+          <Ionicons name="trash-outline" size={24} color="white" />
+        </TouchableOpacity>
+      </View>
+      <View style={styles.recipeInfo}>
+        <Text style={[theme.theme.typography.body, styles.recipeName]}>{recipe.name}</Text>
+      </View>
+    </Pressable>
   );
 };
 
@@ -218,6 +147,7 @@ export default function LogScreen() {
   const [activeTab, setActiveTab] = useState<Tab>('search');
   const [searchQuery, setSearchQuery] = useState('');
   const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [filteredRecipes, setFilteredRecipes] = useState<Recipe[]>([]);
   const [isMealTypeModalVisible, setIsMealTypeModalVisible] = useState(false);
   const [selectedMeal, setSelectedMeal] = useState<{
     name: string;
@@ -233,8 +163,18 @@ export default function LogScreen() {
 
   const fetchRecipes = async () => {
     const fetchedRecipes = await getRecipes();
-    console.log('Fetched recipes:', fetchedRecipes);
     setRecipes(fetchedRecipes);
+    setFilteredRecipes(fetchedRecipes);
+  };
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    if (activeTab === 'recipe') {
+      const filtered = recipes.filter(recipe => 
+        recipe.name.toLowerCase().includes(query.toLowerCase())
+      );
+      setFilteredRecipes(filtered);
+    }
   };
 
   const tabs: Tab[] = ['search', 'recipe'];
@@ -242,7 +182,15 @@ export default function LogScreen() {
   const handleAddMeal = (name: string, image?: any, location?: string) => {
     // Convert local image assets to URI
     let finalImage = image;
-    if (typeof image === 'number') {
+    
+    if (location === 'home') {
+      // For recipes, find the original recipe and use its image
+      const recipe = recipes.find(r => r.name === name);
+      if (recipe) {
+        finalImage = recipe.image;
+      }
+    } else if (typeof image === 'number') {
+      // For restaurant images (local assets)
       finalImage = Image.resolveAssetSource(image).uri;
     }
 
@@ -310,7 +258,7 @@ export default function LogScreen() {
   const renderSearchContent = () => (
     <>
       <View style={styles.section}>
-        <Text style={theme.theme.typography.title}>Popular Places to Eat</Text>
+        <Text style={theme.theme.typography.title}>Favorite Places to Eat</Text>
         <View style={styles.foodGrid}>
           <PopularFoodCard 
             name="TacoBell" 
@@ -385,7 +333,7 @@ export default function LogScreen() {
     <View style={styles.section}>
       <Text style={theme.theme.typography.title}>Recipes</Text>
       <View style={styles.recipeList}>
-        {recipes.map((recipe) => (
+        {filteredRecipes.map((recipe) => (
           <RecipeCard
             key={recipe.id}
             recipe={recipe}
@@ -414,7 +362,7 @@ export default function LogScreen() {
             key={tab}
             style={[
               styles.tab,
-              activeTab === tab && styles.activeTab
+              activeTab === tab && styles.activeTab,
             ]}
             onPress={() => setActiveTab(tab)}
           >
@@ -435,7 +383,7 @@ export default function LogScreen() {
         <TextInput
           placeholder="Search food items"
           value={searchQuery}
-          onChangeText={setSearchQuery}
+          onChangeText={handleSearch}
           style={[styles.searchInput, { color: theme.theme.colors.text }]}
           placeholderTextColor={theme.theme.colors.textSecondary}
         />
@@ -583,24 +531,34 @@ const styles = StyleSheet.create({
     marginTop: 12,
   },
   recipeCard: {
-    flexDirection: 'row',
-    backgroundColor: '#F5F5F5',
-    marginBottom: 12,
+    marginBottom: 24,
+    backgroundColor: 'white',
     overflow: 'hidden',
-    height: 80,
+  },
+  imageContainer: {
+    position: 'relative',
+    width: '100%',
+    height: 200,
   },
   recipeImage: {
-    width: 80,
-    height: 80,
+    width: '100%',
+    height: '100%',
   },
   recipeInfo: {
-    flex: 1,
-    padding: 12,
-    justifyContent: 'center',
+    padding: 16,
   },
   recipeName: {
-    marginBottom: 4,
+    fontSize: 20,
     fontWeight: 'bold',
+    marginBottom: 4,
+  },
+  deleteButton: {
+    position: 'absolute',
+    top: 12,
+    right: 12,
+    backgroundColor: 'rgba(255, 0, 0, 0.7)',
+    borderRadius: 20,
+    padding: 8,
   },
   fab: {
     position: 'absolute',
@@ -620,14 +578,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-  },
-  deleteButton: {
-    backgroundColor: 'red',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 80,
-    height: 80,
-    marginBottom: 12,
   },
 });
 

@@ -1,21 +1,25 @@
 'use client';
 
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, KeyboardAvoidingView, Platform, Image } from 'react-native';
-import { useTheme } from '../components/ThemeProvider';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, KeyboardAvoidingView, Platform, Image, Alert } from 'react-native';
+import { useTheme } from '../../components/ThemeProvider';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useAuth } from '../../components/AuthProvider';
 
 export default function LoginScreen() {
   const theme = useTheme();
   const router = useRouter();
+  const { signIn } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    // Here you would typically validate credentials
-    // For now, we'll just navigate to the home screen
-    router.replace('/(tabs)');
+  const handleLogin = async () => {
+    try {
+      await signIn(email, password);
+    } catch (err: any) {
+      Alert.alert('Error', err.message || 'Failed to sign in');
+    }
   };
 
   return (
@@ -27,7 +31,7 @@ export default function LoginScreen() {
         <View style={styles.content}>
           <View style={styles.header}>
             <Image 
-              source={require('../assets/images/bite-wrap-logo.jpg')}
+              source={require('../../assets/images/bite-wrap-logo.jpg')}
               style={styles.logo}
             />
             <Text style={styles.title}>Bite Wrap</Text>
@@ -38,6 +42,7 @@ export default function LoginScreen() {
             <TextInput
               style={styles.input}
               placeholder="Email"
+              placeholderTextColor="#666"
               value={email}
               onChangeText={setEmail}
               autoCapitalize="none"
@@ -47,12 +52,13 @@ export default function LoginScreen() {
             <TextInput
               style={styles.input}
               placeholder="Password"
+              placeholderTextColor="#666"
               value={password}
               onChangeText={setPassword}
               secureTextEntry
             />
 
-            <TouchableOpacity onPress={() => router.push('/forgot-password')}>
+            <TouchableOpacity onPress={() => router.push('/(auth)/forgot-password')}>
               <Text style={styles.forgotPassword}>Forgot password?</Text>
             </TouchableOpacity>
 
@@ -62,7 +68,7 @@ export default function LoginScreen() {
 
             <TouchableOpacity 
               style={styles.signUpContainer}
-              onPress={() => router.push('/signup')}
+              onPress={() => router.push('/(auth)/signup')}
             >
               <Text style={styles.signUpText}>
                 New user? <Text style={styles.signUpLink}>Sign Up</Text>

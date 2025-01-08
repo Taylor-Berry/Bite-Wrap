@@ -27,21 +27,8 @@ export function MealTypeModal({ isVisible, onClose, onSelect }: MealTypeModalPro
       onRequestClose={onClose}
     >
       <View style={styles.centeredView}>
-        <View style={[styles.modalView, { backgroundColor: theme.theme.colors.background }]}>
-          <Text style={[theme.theme.typography.title, styles.modalTitle]}>Add Meal Details</Text>
-          
-          <View style={styles.inputContainer}>
-            <Text style={theme.theme.typography.body}>Description</Text>
-            <TextInput
-              style={styles.input}
-              value={description}
-              onChangeText={setDescription}
-              placeholder="Enter meal description"
-              multiline
-            />
-          </View>
+        <View style={[styles.modalView, { backgroundColor: theme.theme.colors.background }]}>        
 
-          <Text style={[theme.theme.typography.body, styles.sectionTitle]}>Select Meal Type</Text>
           {mealTypes.map((type) => (
             <TouchableOpacity
               key={type}

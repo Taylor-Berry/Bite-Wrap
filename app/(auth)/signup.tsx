@@ -12,9 +12,10 @@ import {
   Alert,
   ScrollView
 } from 'react-native';
-import { useTheme } from '../components/ThemeProvider';
+import { useTheme } from '../../components/ThemeProvider';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useAuth } from '../../components/AuthProvider';
 
 export default function SignUpScreen() {
   const theme = useTheme();
@@ -24,8 +25,9 @@ export default function SignUpScreen() {
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const { signUp } = useAuth();
 
-  const handleSignUp = () => {
+  const handleSignUp = async () => {
     if (!fullName || !email || !phone || !password || !confirmPassword) {
       Alert.alert('Error', 'Please fill in all fields');
       return;
@@ -36,9 +38,19 @@ export default function SignUpScreen() {
       return;
     }
 
-    // Here you would typically handle the signup process
-    // For now, we'll just navigate to the setup flow
-    router.replace('/setup/add-recipes');
+    try {
+      const autoSignedIn = await signUp(email, password);
+      if (autoSignedIn) {
+        // User is automatically signed in, proceed to setup
+        router.replace('/setup/add-recipes');
+      } else {
+        // Email confirmation required
+        Alert.alert('Success', 'Please check your email to confirm your account');
+        router.replace('/(auth)/login');
+      }
+    } catch (err: any) {
+      Alert.alert('Error', err.message || 'Failed to create account');
+    }
   };
 
   return (
@@ -61,6 +73,7 @@ export default function SignUpScreen() {
               <TextInput
                 style={styles.input}
                 placeholder="Full Name"
+                placeholderTextColor="#666"
                 value={fullName}
                 onChangeText={setFullName}
                 autoCapitalize="words"
@@ -69,6 +82,7 @@ export default function SignUpScreen() {
               <TextInput
                 style={styles.input}
                 placeholder="Email"
+                placeholderTextColor="#666"
                 value={email}
                 onChangeText={setEmail}
                 autoCapitalize="none"
@@ -78,6 +92,7 @@ export default function SignUpScreen() {
               <TextInput
                 style={styles.input}
                 placeholder="Phone Number"
+                placeholderTextColor="#666"
                 value={phone}
                 onChangeText={setPhone}
                 keyboardType="phone-pad"
@@ -86,6 +101,7 @@ export default function SignUpScreen() {
               <TextInput
                 style={styles.input}
                 placeholder="Password"
+                placeholderTextColor="#666"
                 value={password}
                 onChangeText={setPassword}
                 secureTextEntry
@@ -94,6 +110,7 @@ export default function SignUpScreen() {
               <TextInput
                 style={styles.input}
                 placeholder="Confirm Password"
+                placeholderTextColor="#666"
                 value={confirmPassword}
                 onChangeText={setConfirmPassword}
                 secureTextEntry
