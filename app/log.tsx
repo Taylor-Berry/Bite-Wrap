@@ -30,35 +30,12 @@ import { MealActionOverlay } from '../components/MealActionOverlay';
 import { addLog as addLogFunc, getLogsByDate, deleteLogMeal, Log } from '../utils/database';
 import { getCurrentLocation, LocationData } from '../utils/location';
 import { searchNearbyRestaurants, Restaurant } from '../utils/restaurants';
-import { getFavoriteRestaurants, FavoriteRestaurant } from '../utils/favorites';
+import { getFavoriteRestaurants, FavoriteRestaurant, addFavoriteRestaurant, removeFavoriteRestaurant } from '../utils/favorites';
 
 const DEFAULT_IMAGE = 'https://placehold.co/600x400/png';
 
 type Tab = 'search' | 'recipe';
 
-const PopularFoodCard = ({ 
-  name, 
-  calories,
-  icon = 'leaf-outline',
-  onPress
-}: { 
-  name: string; 
-  calories: number;
-  icon?: string;
-  onPress: () => void;
-}) => {
-  const theme = useTheme();
-  
-  return (
-    <Pressable 
-      style={[styles.foodCard, { borderRadius: theme.theme.shapes.borderRadius }]}
-      onPress={onPress}
-    >
-      <Ionicons name={icon as any} size={24} color={theme.theme.colors.text} />
-      <Text style={[theme.theme.typography.body, styles.foodName]}>{name}</Text>
-    </Pressable>
-  );
-};
 
 const RecentItemCard = ({ 
   name, 
@@ -92,14 +69,16 @@ const RestaurantCard = ({
   onPress,
   searchQuery,
   onFavoritePress,
-  isFavorite
+  isFavorite,
+  restaurant
 }: { 
-  name: string; 
-  image: { uri: string } | null;
+  name?: string; 
+  image?: { uri: string } | null;
   onPress: () => void;
   searchQuery: string;
   onFavoritePress?: () => void;
   isFavorite?: boolean;
+  restaurant?: Restaurant;
 }) => {
   const theme = useTheme();
   
@@ -112,23 +91,28 @@ const RestaurantCard = ({
       } : undefined]}
       onPress={onPress}
     >
-      <Image 
-        source={image || { uri: DEFAULT_IMAGE }}
-        style={[styles.restaurantImage, { borderRadius: theme.theme.shapes.borderRadius }]} 
-        defaultSource={{ uri: DEFAULT_IMAGE }}
-      />
-      <View style={styles.restaurantInfo}>
-        <Text style={[theme.theme.typography.body, styles.restaurantName]}>{name}</Text>
+      <View style={styles.imageContainer}>
+        <Image 
+          source={(restaurant?.image && { uri: restaurant.image }) || image || { uri: DEFAULT_IMAGE }}
+          style={[styles.restaurantImage, { borderRadius: theme.theme.shapes.borderRadius }]} 
+          defaultSource={{ uri: DEFAULT_IMAGE }}
+        />
         {onFavoritePress && (
-          <TouchableOpacity onPress={onFavoritePress} style={styles.favoriteButton}>
+          <TouchableOpacity 
+            onPress={onFavoritePress} 
+            style={styles.favoriteButton}
+          >
             <Ionicons 
-              name={isFavorite ? "heart" : "heart-outline"} 
+              name={isFavorite ? "star" : "star-outline"} 
               size={24} 
-              color={isFavorite ? "#ff4444" : "#666"} 
+              color={isFavorite ? "#FFD700" : "#fff"} 
             />
           </TouchableOpacity>
         )}
       </View>
+      <Text style={[theme.theme.typography.body, styles.restaurantName]}>
+        {restaurant?.name || name}
+      </Text>
     </Pressable>
   );
 };
@@ -368,6 +352,24 @@ export default function LogScreen() {
     fetchExistingLogs();
   };
 
+  const toggleFavorite = async (restaurant: Restaurant) => {
+    const isFavorite = favoriteRestaurants.some(fav => fav.restaurant_name === restaurant.name);
+    if (isFavorite) {
+      await removeFavoriteRestaurant(restaurant.name);
+      setFavoriteRestaurants(favoriteRestaurants.filter(fav => fav.restaurant_name !== restaurant.name));
+    } else {
+      await addFavoriteRestaurant(restaurant.name, restaurant.image || DEFAULT_IMAGE, restaurant.address || '');
+      const newFavorite = {
+        id: Date.now().toString(),
+        restaurant_name: restaurant.name,
+        restaurant_image: restaurant.image || DEFAULT_IMAGE,
+        restaurant_location: restaurant.address || '',
+        created_at: new Date().toISOString()
+      };
+      setFavoriteRestaurants([...favoriteRestaurants, newFavorite]);
+    }
+  };
+
   const displayedRestaurants = searchQuery 
     ? filteredRestaurants 
     : nearbyRestaurants.slice(0, 10);
@@ -384,11 +386,17 @@ export default function LogScreen() {
             {filteredRestaurants.map((restaurant) => (
               <RestaurantCard
                 key={restaurant.name}
-                name={restaurant.name}
-                image={restaurant.image ? { uri: restaurant.image } : null}
+                restaurant={restaurant}
                 onPress={() => handleAddMeal(restaurant.name, { uri: restaurant.image }, restaurant.name)}
                 searchQuery={searchQuery}
-                onFavoritePress={() => handleAddMeal(restaurant.name, { uri: restaurant.image }, restaurant.name)}
+                onFavoritePress={() => toggleFavorite({
+                  name: restaurant.name,
+                  image: restaurant.image,
+                  address: restaurant.address,
+                  coordinate: { latitude: 0, longitude: 0 },
+                  distance: 0,
+                  category: 'Restaurant'
+                })}
                 isFavorite={favoriteRestaurants.some(favorite => favorite.restaurant_name === restaurant.name)}
               />
             ))}
@@ -415,19 +423,28 @@ export default function LogScreen() {
             {favoriteRestaurants.map((restaurant) => (
               <RestaurantCard
                 key={restaurant.restaurant_name}
-                name={restaurant.restaurant_name}
-                image={{ uri: restaurant.restaurant_image }}
+                restaurant={{
+                  name: restaurant.restaurant_name,
+                  image: restaurant.restaurant_image,
+                  address: restaurant.restaurant_location,
+                  coordinate: { latitude: 0, longitude: 0 },
+                  distance: 0,
+                  category: 'Restaurant'
+                }}
                 onPress={() => handleAddMeal(
                   restaurant.restaurant_name, 
                   { uri: restaurant.restaurant_image }, 
                   restaurant.restaurant_location
                 )}
                 searchQuery=""
-                onFavoritePress={() => handleAddMeal(
-                  restaurant.restaurant_name, 
-                  { uri: restaurant.restaurant_image }, 
-                  restaurant.restaurant_location
-                )}
+                onFavoritePress={() => toggleFavorite({
+                  name: restaurant.restaurant_name,
+                  image: restaurant.restaurant_image,
+                  address: restaurant.restaurant_location,
+                  coordinate: { latitude: 0, longitude: 0 },
+                  distance: 0,
+                  category: 'Restaurant'
+                })}
                 isFavorite={true}
               />
             ))}
@@ -469,11 +486,17 @@ export default function LogScreen() {
             {nearbyRestaurants.slice(0, 10).map((restaurant) => (
               <RestaurantCard
                 key={restaurant.name}
-                name={restaurant.name}
-                image={restaurant.image ? { uri: restaurant.image } : null}
+                restaurant={restaurant}
                 onPress={() => handleAddMeal(restaurant.name, { uri: restaurant.image }, restaurant.name)}
                 searchQuery={searchQuery}
-                onFavoritePress={() => handleAddMeal(restaurant.name, { uri: restaurant.image }, restaurant.name)}
+                onFavoritePress={() => toggleFavorite({
+                  name: restaurant.name,
+                  image: restaurant.image,
+                  address: restaurant.address,
+                  coordinate: { latitude: 0, longitude: 0 },
+                  distance: 0,
+                  category: 'Restaurant'
+                })}
                 isFavorite={favoriteRestaurants.some(favorite => favorite.restaurant_name === restaurant.name)}
               />
             ))}
@@ -798,6 +821,21 @@ const styles = StyleSheet.create({
     paddingHorizontal: 4,
   },
   favoriteButton: {
+    padding: 4,
+  },
+  favoriteRestaurantCard: {
+    width: 160,
+    marginRight: 12,
+  },
+  imageContainer: {
+    position: 'relative',
+  },
+  favoriteButton: {
+    position: 'absolute',
+    top: 8,
+    right: 8,
+    backgroundColor: 'rgba(0,0,0,0.3)',
+    borderRadius: 12,
     padding: 4,
   },
 });

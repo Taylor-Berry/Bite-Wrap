@@ -1,5 +1,4 @@
 import { LocationData } from './location';
-import { YELP_API_KEY } from '@env';
 import mockYelpData from './Yelp_Response_Data.json';
 
 export interface Restaurant {
@@ -69,7 +68,7 @@ export const searchNearbyRestaurants = async (location: LocationData): Promise<R
       `limit=50`,
       {
         headers: {
-          'Authorization': `Bearer ${YELP_API_KEY}`,
+          'Authorization': `Bearer ${process.env.EXPO_PUBLIC_YELP_API_KEY}`,
           'Content-Type': 'application/json',
         },
       }

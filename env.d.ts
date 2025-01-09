@@ -1,4 +1,4 @@
 declare module '@env' {
-  export const SUPABASE_KEY: string;
-  export const YELP_API_KEY: string;
+  export const EXPO_PUBLIC_SUPABASE_KEY: string;
+  export const EXPO_PUBLIC_YELP_API_KEY: string;
 } 
