@@ -1,57 +1,24 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   View, 
   Text, 
   StyleSheet, 
   TouchableOpacity, 
   Image, 
-  ScrollView 
+  ScrollView,
+  Alert 
 } from 'react-native';
 import { useTheme } from '../../components/ThemeProvider';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { getCurrentLocation } from '../../utils/location';
+import { searchNearbyRestaurants, Restaurant } from '../../utils/restaurants';
+import { addFavoriteRestaurant } from '../../utils/favorites';
+import { Ionicons } from '@expo/vector-icons';
 
-interface Restaurant {
-  id: string;
-  name: string;
-  category: string;
-  image: any;
-}
-
-const restaurants: Restaurant[] = [
-  {
-    id: '1',
-    name: 'McDonald\'s',
-    category: 'Fast Food',
-    image: require('../../assets/images/restaurants/mcdonalds.jpg'),
-  },
-  {
-    id: '2',
-    name: 'Taco Bell',
-    category: 'Fast Food',
-    image: require('../../assets/images/restaurants/taco-bell.jpg'),
-  },
-  {
-    id: '3',
-    name: 'Chick-fil-A',
-    category: 'Fast Food',
-    image: require('../../assets/images/restaurants/chick-fil-a.jpg'),
-  },
-  {
-    id: '4',
-    name: 'Shake Shack',
-    category: 'Fast Food',
-    image: require('../../assets/images/restaurants/shake-shack.jpg'),
-  },
-  {
-    id: '5',
-    name: 'Chipotle',
-    category: 'Fast Food',
-    image: require('../../assets/images/restaurants/chipotle.jpg'),
-  },
-];
+const DEFAULT_IMAGE = 'https://placehold.co/600x400/png';
 
 const RestaurantCard = ({ 
   restaurant, 
@@ -66,9 +33,20 @@ const RestaurantCard = ({
     style={[styles.card, selected && styles.cardSelected]} 
     onPress={onPress}
   >
-    <Image source={restaurant.image} style={styles.cardImage} />
+    <Image 
+      source={{ uri: restaurant.image || DEFAULT_IMAGE }} 
+      style={styles.cardImage}
+      defaultSource={{ uri: DEFAULT_IMAGE }}
+    />
     <Text style={styles.cardTitle}>{restaurant.name}</Text>
     <Text style={styles.cardSubtitle}>{restaurant.category}</Text>
+    <View style={styles.selectedIcon}>
+      <Ionicons 
+        name={selected ? "checkmark-circle" : "checkmark-circle-outline"} 
+        size={24} 
+        color={selected ? "#007AFF" : "#666"} 
+      />
+    </View>
   </TouchableOpacity>
 );
 
@@ -76,23 +54,58 @@ export default function FavoritePlacesScreen() {
   const theme = useTheme();
   const router = useRouter();
   const [selectedPlaces, setSelectedPlaces] = useState<Set<string>>(new Set());
+  const [nearbyRestaurants, setNearbyRestaurants] = useState<Restaurant[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const togglePlace = (id: string) => {
+  useEffect(() => {
+    const fetchRestaurants = async () => {
+      try {
+        const locationData = await getCurrentLocation();
+        if (locationData) {
+          const restaurants = await searchNearbyRestaurants(locationData);
+          setNearbyRestaurants(restaurants);
+        }
+      } catch (error) {
+        console.error('Error fetching restaurants:', error);
+        Alert.alert('Error', 'Failed to load nearby restaurants');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRestaurants();
+  }, []);
+
+  const togglePlace = (restaurant: Restaurant) => {
     const newSelected = new Set(selectedPlaces);
-    if (newSelected.has(id)) {
-      newSelected.delete(id);
+    if (newSelected.has(restaurant.name)) {
+      newSelected.delete(restaurant.name);
     } else {
-      newSelected.add(id);
+      newSelected.add(restaurant.name);
     }
     setSelectedPlaces(newSelected);
   };
 
-  const handleDone = () => {
-    router.replace('/(tabs)');
-  };
+  const handleDone = async () => {
+    try {
+      // Add selected restaurants to favorites
+      const promises = Array.from(selectedPlaces).map(name => {
+        const restaurant = nearbyRestaurants.find(r => r.name === name);
+        if (restaurant) {
+          return addFavoriteRestaurant(
+            restaurant.name,
+            restaurant.image || DEFAULT_IMAGE,
+            restaurant.address || ''
+          );
+        }
+      });
 
-  const handleSkip = () => {
-    router.replace('/(tabs)');
+      await Promise.all(promises);
+      router.replace('/(tabs)');
+    } catch (error) {
+      console.error('Error saving favorites:', error);
+      Alert.alert('Error', 'Failed to save favorite restaurants');
+    }
   };
 
   return (
@@ -107,22 +120,26 @@ export default function FavoritePlacesScreen() {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        <View style={styles.grid}>
-          {restaurants.map((restaurant) => (
-            <RestaurantCard
-              key={restaurant.id}
-              restaurant={restaurant}
-              selected={selectedPlaces.has(restaurant.id)}
-              onPress={() => togglePlace(restaurant.id)}
-            />
-          ))}
-        </View>
+        {loading ? (
+          <Text style={styles.loadingText}>Loading nearby restaurants...</Text>
+        ) : (
+          <View style={styles.grid}>
+            {nearbyRestaurants.map((restaurant) => (
+              <RestaurantCard
+                key={restaurant.name}
+                restaurant={restaurant}
+                selected={selectedPlaces.has(restaurant.name)}
+                onPress={() => togglePlace(restaurant)}
+              />
+            ))}
+          </View>
+        )}
       </ScrollView>
 
       <View style={styles.footer}>
         <TouchableOpacity 
           style={styles.skipButton} 
-          onPress={handleSkip}
+          onPress={() => router.replace('/(tabs)')}
         >
           <Text style={styles.skipButtonText}>Skip for now</Text>
         </TouchableOpacity>
@@ -222,6 +239,20 @@ const styles = StyleSheet.create({
     color: '#FFF',
     fontSize: 16,
     fontWeight: '600',
+  },
+  loadingText: {
+    textAlign: 'center',
+    fontSize: 16,
+    color: '#666',
+    marginTop: 20,
+  },
+  selectedIcon: {
+    position: 'absolute',
+    top: 8,
+    right: 8,
+    backgroundColor: 'white',
+    borderRadius: 12,
+    padding: 2,
   },
 });
 

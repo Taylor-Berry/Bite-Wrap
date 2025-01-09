@@ -169,6 +169,50 @@ export const getLogsByDate = async (date: string): Promise<Log[]> => {
   }
 };
 
+export const getRecentRestaurantLogs = async (limit: number = 3): Promise<Log[]> => {
+  try {
+    const { data: logs, error } = await supabase
+      .from('logs')
+      .select(`
+        id,
+        date,
+        meal_type,
+        meals (
+          id,
+          name,
+          location,
+          description,
+          image,
+          thumbnail_image
+        )
+      `)
+      .not('meals.location', 'eq', 'home')
+      .order('date', { ascending: false })
+      .limit(limit)
+      .returns<DBLog[]>();
+
+    if (error) throw error;
+    if (!logs) return [];
+
+    return logs.map(log => ({
+      id: log.id,
+      date: log.date,
+      mealType: log.meal_type,
+      meal: {
+        id: log.meals!.id,
+        name: log.meals!.name,
+        location: log.meals!.location,
+        description: log.meals!.description,
+        image: log.meals!.image,
+        thumbnailImage: log.meals!.thumbnail_image,
+      }
+    }));
+  } catch (error) {
+    console.error('Error getting recent restaurant logs:', error);
+    return [];
+  }
+};
+
 export const addLog = async (newLog: Log) => {
   try {
     const { data: { session } } = await supabase.auth.getSession();

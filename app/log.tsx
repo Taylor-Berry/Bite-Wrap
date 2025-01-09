@@ -16,7 +16,7 @@ import { useTheme } from '../components/ThemeProvider';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter, useLocalSearchParams } from 'expo-router';
-import { addLog, addRecipe, getRecipes, deleteRecipe, Recipe } from '../utils/database';
+import { addLog, addRecipe, getRecipes, deleteRecipe, Recipe, getRecentRestaurantLogs } from '../utils/database';
 import { format } from 'date-fns';
 // import { MealTypeModal } from '../components/MealTypeModal';
 import { Swipeable } from 'react-native-gesture-handler';
@@ -28,6 +28,9 @@ import {
 } from 'react-native-gesture-handler';
 import { MealActionOverlay } from '../components/MealActionOverlay';
 import { addLog as addLogFunc, getLogsByDate, deleteLogMeal, Log } from '../utils/database';
+import { getCurrentLocation, LocationData } from '../utils/location';
+import { searchNearbyRestaurants, Restaurant } from '../utils/restaurants';
+import { getFavoriteRestaurants, FavoriteRestaurant } from '../utils/favorites';
 
 const DEFAULT_IMAGE = 'https://placehold.co/600x400/png';
 
@@ -86,24 +89,46 @@ const RecentItemCard = ({
 const RestaurantCard = ({ 
   name, 
   image,
-  onPress
+  onPress,
+  searchQuery,
+  onFavoritePress,
+  isFavorite
 }: { 
   name: string; 
-  image: any;
+  image: { uri: string } | null;
   onPress: () => void;
+  searchQuery: string;
+  onFavoritePress?: () => void;
+  isFavorite?: boolean;
 }) => {
   const theme = useTheme();
   
   return (
     <Pressable 
-      style={styles.restaurantCard}
+      style={[styles.restaurantCard, searchQuery ? {
+        flex: 1,
+        minWidth: '30%',
+        maxWidth: '45%'
+      } : undefined]}
       onPress={onPress}
     >
       <Image 
-        source={image}
+        source={image || { uri: DEFAULT_IMAGE }}
         style={[styles.restaurantImage, { borderRadius: theme.theme.shapes.borderRadius }]} 
+        defaultSource={{ uri: DEFAULT_IMAGE }}
       />
-      <Text style={[theme.theme.typography.body, styles.restaurantName]}>{name}</Text>
+      <View style={styles.restaurantInfo}>
+        <Text style={[theme.theme.typography.body, styles.restaurantName]}>{name}</Text>
+        {onFavoritePress && (
+          <TouchableOpacity onPress={onFavoritePress} style={styles.favoriteButton}>
+            <Ionicons 
+              name={isFavorite ? "heart" : "heart-outline"} 
+              size={24} 
+              color={isFavorite ? "#ff4444" : "#666"} 
+            />
+          </TouchableOpacity>
+        )}
+      </View>
     </Pressable>
   );
 };
@@ -180,9 +205,29 @@ export default function LogScreen() {
   const [actionOverlayVisible, setActionOverlayVisible] = useState(false);
   const [actionPosition, setActionPosition] = useState({ x: 0, y: 0 });
   const [existingLogs, setExistingLogs] = useState<Log[]>([]);
+  const [location, setLocation] = useState<LocationData | null>(null);
+  const [nearbyRestaurants, setNearbyRestaurants] = useState<Restaurant[]>([]);
+  const [filteredRestaurants, setFilteredRestaurants] = useState<Restaurant[]>([]);
+  const [recentRestaurants, setRecentRestaurants] = useState<Log[]>([]);
+  const [favoriteRestaurants, setFavoriteRestaurants] = useState<FavoriteRestaurant[]>([]);
 
   useFocusEffect(
     React.useCallback(() => {
+      const fetchData = async () => {
+        const locationData = await getCurrentLocation();
+        if (locationData) {
+          setLocation(locationData);
+          // Fetch nearby restaurants when location is available
+          const restaurants = await searchNearbyRestaurants(locationData);
+          setNearbyRestaurants(restaurants);
+        }
+        const recentLogs = await getRecentRestaurantLogs();
+        setRecentRestaurants(recentLogs);
+        const favorites = await getFavoriteRestaurants();
+        setFavoriteRestaurants(favorites);
+      };
+
+      fetchData();
       fetchRecipes();
       fetchExistingLogs();
     }, [date])
@@ -206,6 +251,11 @@ export default function LogScreen() {
         recipe.name.toLowerCase().includes(query.toLowerCase())
       );
       setFilteredRecipes(filtered);
+    } else if (activeTab === 'search') {
+      const filtered = nearbyRestaurants.filter(restaurant =>
+        restaurant.name.toLowerCase().includes(query.toLowerCase())
+      );
+      setFilteredRestaurants(filtered);
     }
   };
 
@@ -244,8 +294,17 @@ export default function LogScreen() {
     if (selectedMeal) {
       const now = new Date();
       const location = selectedMeal.location || 'home';
-      const isRecipe = location === 'home';
       
+      // More robust image handling
+      let imageUrl = DEFAULT_IMAGE;
+      if (selectedMeal.image) {
+        if (typeof selectedMeal.image === 'string') {
+          imageUrl = selectedMeal.image;
+        } else if (selectedMeal.image.uri) {
+          imageUrl = selectedMeal.image.uri;
+        }
+      }
+
       const newLog: Log = {
         id: now.getTime().toString(),
         date: date,
@@ -255,15 +314,20 @@ export default function LogScreen() {
           name: selectedMeal.name,
           location,
           description: '',
-          image: selectedMeal.image,
+          image: imageUrl,
         }
       };
 
-      await addLogFunc(newLog);
-      Alert.alert('Meal added successfully!');
-      setSelectedMeal(null);
-      setActionOverlayVisible(false);
-      fetchExistingLogs();
+      try {
+        await addLogFunc(newLog);
+        Alert.alert('Meal added successfully!');
+        setSelectedMeal(null);
+        setActionOverlayVisible(false);
+        fetchExistingLogs();
+      } catch (error) {
+        console.error('Error adding meal:', error);
+        Alert.alert('Error', 'Failed to add meal');
+      }
     }
   };
 
@@ -304,79 +368,120 @@ export default function LogScreen() {
     fetchExistingLogs();
   };
 
-  const renderSearchContent = () => (
-    <>
-      <View style={styles.section}>
-        <Text style={theme.theme.typography.title}>Favorite Places to Eat</Text>
-        <View style={styles.foodGrid}>
-          <PopularFoodCard 
-            name="TacoBell" 
-            calories={120} 
-            onPress={() => handleAddMeal("TacoBell", null, "TacoBell")} 
-          />
-          <PopularFoodCard 
-            name="Zaxby's" 
-            calories={30} 
-            onPress={() => handleAddMeal("Zaxby's",  null, "Zaxby's")} 
-          />
-          <PopularFoodCard 
-            name="Cook Out" 
-            calories={50} 
-            onPress={() => handleAddMeal("Cook Out", null, "Cook Out")} 
-          />
-          <PopularFoodCard 
-            name="McDonald's" 
-            calories={200} 
-            onPress={() => handleAddMeal("McDonald's", null, "McDonald's")} 
-          />
-        </View>
-      </View>
+  const displayedRestaurants = searchQuery 
+    ? filteredRestaurants 
+    : nearbyRestaurants.slice(0, 10);
 
-      <View style={styles.section}>
-        <Text style={theme.theme.typography.title}>Recent Restaurants</Text>
-        <View style={styles.recentItemsContainer}>
-          <RecentItemCard 
-            name="Chicken Sandwich" 
-            calories={450} 
-            time="2 days ago" 
-            onPress={() => handleAddMeal("Chicken Sandwich", 450)} 
-          />
-          <RecentItemCard 
-            name="Greek Yogurt" 
-            calories={150} 
-            time="3 days ago" 
-            onPress={() => handleAddMeal("Greek Yogurt", 150)} 
-          />
-          <RecentItemCard 
-            name="Banana" 
-            calories={105} 
-            time="4 days ago" 
-            onPress={() => handleAddMeal("Banana", 105)} 
-          />
+  const renderSearchContent = () => {
+    if (searchQuery) {
+      // Show only search results when searching
+      return (
+        <View style={styles.section}>
+          <Text style={theme.theme.typography.title}>
+            Search Results ({filteredRestaurants.length})
+          </Text>
+          <View style={styles.searchResultsGrid}>
+            {filteredRestaurants.map((restaurant) => (
+              <RestaurantCard
+                key={restaurant.name}
+                name={restaurant.name}
+                image={restaurant.image ? { uri: restaurant.image } : null}
+                onPress={() => handleAddMeal(restaurant.name, { uri: restaurant.image }, restaurant.name)}
+                searchQuery={searchQuery}
+                onFavoritePress={() => handleAddMeal(restaurant.name, { uri: restaurant.image }, restaurant.name)}
+                isFavorite={favoriteRestaurants.some(favorite => favorite.restaurant_name === restaurant.name)}
+              />
+            ))}
+            {filteredRestaurants.length === 0 && (
+              <Text style={[theme.theme.typography.body, styles.noResults]}>
+                No restaurants found
+              </Text>
+            )}
+          </View>
         </View>
-      </View>
+      );
+    }
 
-      <View style={styles.section}>
-        <Text style={theme.theme.typography.title}>Nearby Restaurants</Text>
-        <ScrollView 
-          horizontal 
-          showsHorizontalScrollIndicator={false}
-          style={styles.restaurantsScroll}
-        >
-          <RestaurantCard
-            name="McDonald's"
-            image={require('../assets/images/restaurants/mcdonalds.jpg')}
-            onPress={() => handleAddMeal("Big Mac", require('../assets/images/restaurants/mcdonalds.jpg'), "McDonald's")}
-          />
-          <RestaurantCard
-            name="Chipotle"
-            image={require('../assets/images/restaurants/chipotle.jpg')}
-            onPress={() => handleAddMeal("Burrito Bowl", require('../assets/images/restaurants/chipotle.jpg'), "Chipotle")}
-          />
-        </ScrollView>
-      </View>
-    </>
-  );
+    // Show normal content when not searching
+    return (
+      <>
+        <View style={styles.section}>
+          <Text style={theme.theme.typography.title}>Favorite Places to Eat</Text>
+          <ScrollView 
+            horizontal 
+            showsHorizontalScrollIndicator={false}
+            style={styles.restaurantsScroll}
+          >
+            {favoriteRestaurants.map((restaurant) => (
+              <RestaurantCard
+                key={restaurant.restaurant_name}
+                name={restaurant.restaurant_name}
+                image={{ uri: restaurant.restaurant_image }}
+                onPress={() => handleAddMeal(
+                  restaurant.restaurant_name, 
+                  { uri: restaurant.restaurant_image }, 
+                  restaurant.restaurant_location
+                )}
+                searchQuery=""
+                onFavoritePress={() => handleAddMeal(
+                  restaurant.restaurant_name, 
+                  { uri: restaurant.restaurant_image }, 
+                  restaurant.restaurant_location
+                )}
+                isFavorite={true}
+              />
+            ))}
+            {favoriteRestaurants.length === 0 && (
+              <Text style={[theme.theme.typography.body, styles.noResults]}>
+                No favorite restaurants yet
+              </Text>
+            )}
+          </ScrollView>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={theme.theme.typography.title}>Recent Restaurants</Text>
+          <View style={styles.recentItemsContainer}>
+            {recentRestaurants.map((log) => (
+              <RecentItemCard 
+                key={log.id}
+                name={log.meal.name}
+                calories={0}
+                time={format(new Date(log.date), 'MMM d')}
+                onPress={() => handleAddMeal(log.meal.name, log.meal.image, log.meal.location)}
+              />
+            ))}
+            {recentRestaurants.length === 0 && (
+              <Text style={[theme.theme.typography.body, styles.noResults]}>
+                No recent restaurant visits
+              </Text>
+            )}
+          </View>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={theme.theme.typography.title}>Nearby Restaurants</Text>
+          <ScrollView 
+            horizontal 
+            showsHorizontalScrollIndicator={false}
+            style={styles.restaurantsScroll}
+          >
+            {nearbyRestaurants.slice(0, 10).map((restaurant) => (
+              <RestaurantCard
+                key={restaurant.name}
+                name={restaurant.name}
+                image={restaurant.image ? { uri: restaurant.image } : null}
+                onPress={() => handleAddMeal(restaurant.name, { uri: restaurant.image }, restaurant.name)}
+                searchQuery={searchQuery}
+                onFavoritePress={() => handleAddMeal(restaurant.name, { uri: restaurant.image }, restaurant.name)}
+                isFavorite={favoriteRestaurants.some(favorite => favorite.restaurant_name === restaurant.name)}
+              />
+            ))}
+          </ScrollView>
+        </View>
+      </>
+    );
+  };
 
   const renderRecipeContent = () => (
     <View style={styles.section}>
@@ -584,6 +689,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 120,
     marginBottom: 8,
+    backgroundColor: '#f0f0f0',
   },
   restaurantName: {
     marginBottom: 0,
@@ -672,6 +778,27 @@ const styles = StyleSheet.create({
   },
   existingLogText: {
     fontSize: 16,
+  },
+  noResults: {
+    padding: 16,
+    color: '#666',
+  },
+  searchResultsGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'flex-start',
+    marginTop: 12,
+    gap: 12,
+    paddingHorizontal: 4,
+  },
+  restaurantInfo: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 4,
+  },
+  favoriteButton: {
+    padding: 4,
   },
 });
 

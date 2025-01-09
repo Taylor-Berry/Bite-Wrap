@@ -32,6 +32,13 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location to find nearby restaurants.",
+          "locationWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location to find nearby restaurants."
+        }
       ]
     ],
     "experiments": {

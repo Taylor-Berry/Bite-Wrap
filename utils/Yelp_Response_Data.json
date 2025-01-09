@@ -1,0 +1,5067 @@
+{
+    "businesses": [
+        {
+            "id": "SDJ8Xk5F658mL7IoIj05iA",
+            "alias": "walkertown-seafood-shack-walkertown",
+            "name": "Walkertown Seafood Shack",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/TC9_JACvv7mGpETZzfeUCA/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/walkertown-seafood-shack-walkertown?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 199,
+            "categories": [
+                {
+                    "alias": "seafood",
+                    "title": "Seafood"
+                },
+                {
+                    "alias": "hotdogs",
+                    "title": "Fast Food"
+                },
+                {
+                    "alias": "fishnchips",
+                    "title": "Fish & Chips"
+                }
+            ],
+            "rating": 4.1,
+            "coordinates": {
+                "latitude": 36.1671,
+                "longitude": -80.14836
+            },
+            "transactions": [
+                "delivery"
+            ],
+            "price": "$$",
+            "location": {
+                "address1": "2890 Darrow Rd",
+                "address2": null,
+                "address3": null,
+                "city": "Walkertown",
+                "zip_code": "27051",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "2890 Darrow Rd",
+                    "Walkertown, NC 27051"
+                ]
+            },
+            "phone": "+13365952932",
+            "display_phone": "(336) 595-2932",
+            "distance": 1457.3397482200394,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2000",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2000",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2000",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2000",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": false
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": null,
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "fNLipmiOeQyhFaLvawa2og",
+            "alias": "el-maguey-walkertown",
+            "name": "El Maguey",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/30Y5c8xG073nJ-0zSN2lgw/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/el-maguey-walkertown?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 78,
+            "categories": [
+                {
+                    "alias": "mexican",
+                    "title": "Mexican"
+                }
+            ],
+            "rating": 3.8,
+            "coordinates": {
+                "latitude": 36.162674,
+                "longitude": -80.137562
+            },
+            "transactions": [
+                "delivery"
+            ],
+            "price": "$$",
+            "location": {
+                "address1": "5160 Reidsville Rd",
+                "address2": "",
+                "address3": "",
+                "city": "Walkertown",
+                "zip_code": "27051",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "5160 Reidsville Rd",
+                    "Walkertown, NC 27051"
+                ]
+            },
+            "phone": "+13365954220",
+            "display_phone": "(336) 595-4220",
+            "distance": 1541.9517507668706,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2200",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2200",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2200",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2200",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2230",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2230",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2200",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": null,
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "U4uQ2sjXuAkn6sdVJfsdFg",
+            "alias": "monte-de-rey-walkertown",
+            "name": "Monte de Rey",
+            "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/2VTu9A8pYhGJKR7JnPGgXA/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/monte-de-rey-walkertown?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 55,
+            "categories": [
+                {
+                    "alias": "mexican",
+                    "title": "Mexican"
+                },
+                {
+                    "alias": "vegetarian",
+                    "title": "Vegetarian"
+                },
+                {
+                    "alias": "chicken_wings",
+                    "title": "Chicken Wings"
+                }
+            ],
+            "rating": 4.1,
+            "coordinates": {
+                "latitude": 36.1675489681404,
+                "longitude": -80.1513718846562
+            },
+            "transactions": [
+                "pickup",
+                "delivery"
+            ],
+            "price": "$",
+            "location": {
+                "address1": "3018 Old Hollow Rd",
+                "address2": "",
+                "address3": "",
+                "city": "Walkertown",
+                "zip_code": "27051",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "3018 Old Hollow Rd",
+                    "Walkertown, NC 27051"
+                ]
+            },
+            "phone": "+13365953033",
+            "display_phone": "(336) 595-3033",
+            "distance": 1494.4761509464902,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2200",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2200",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2200",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2200",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2300",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2300",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2200",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": "http://montederey.com/menu.html",
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "1DpOuc9D9efUR-Qx2o2fPQ",
+            "alias": "smittys-grille-kernersville-2",
+            "name": "Smitty's Grille",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/qTIZd9gZfZDk0H00ojW8dA/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/smittys-grille-kernersville-2?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 193,
+            "categories": [
+                {
+                    "alias": "seafood",
+                    "title": "Seafood"
+                }
+            ],
+            "rating": 4.2,
+            "coordinates": {
+                "latitude": 36.112451,
+                "longitude": -80.089249
+            },
+            "transactions": [
+                "delivery"
+            ],
+            "price": "$$",
+            "location": {
+                "address1": "838 S Main St",
+                "address2": "Ste E",
+                "address3": "",
+                "city": "Kernersville",
+                "zip_code": "27284",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "838 S Main St",
+                    "Ste E",
+                    "Kernersville, NC 27284"
+                ]
+            },
+            "phone": "+13369936699",
+            "display_phone": "(336) 993-6699",
+            "distance": 7230.774080776971,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1600",
+                            "end": "2100",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1600",
+                            "end": "2100",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1600",
+                            "end": "2100",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1600",
+                            "end": "2100",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1600",
+                            "end": "2130",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1600",
+                            "end": "2130",
+                            "day": 5
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": "http://www.smittysgrille.com/menu.htm",
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "sZHqhxD-VRJyI57CaC55yA",
+            "alias": "ryans-restaurant-steaks-chops-and-seafood-winston-salem",
+            "name": "Ryan's Restaurant -Steaks-Chops & Seafood",
+            "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/N66v2qzSrT9LpZj9kSieFw/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/ryans-restaurant-steaks-chops-and-seafood-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 244,
+            "categories": [
+                {
+                    "alias": "steak",
+                    "title": "Steakhouses"
+                },
+                {
+                    "alias": "seafood",
+                    "title": "Seafood"
+                }
+            ],
+            "rating": 4.2,
+            "coordinates": {
+                "latitude": 36.12486752079133,
+                "longitude": -80.2627067
+            },
+            "transactions": [
+                "delivery"
+            ],
+            "price": "$$$",
+            "location": {
+                "address1": "719 Coliseum Dr",
+                "address2": "",
+                "address3": "",
+                "city": "Winston Salem",
+                "zip_code": "27106",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "719 Coliseum Dr",
+                    "Winston Salem, NC 27106"
+                ]
+            },
+            "phone": "+13367246132",
+            "display_phone": "(336) 724-6132",
+            "distance": 10538.932159894903,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2100",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2100",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2100",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2100",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2130",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1630",
+                            "end": "2130",
+                            "day": 5
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": null,
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "b3Iq244QHGs6LFMZ7IDGzA",
+            "alias": "mozelles-fresh-southern-bistro-winston-salem",
+            "name": "Mozelle's Fresh Southern Bistro",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/mBA4KtgOhkliqt4ufSgwcA/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/mozelles-fresh-southern-bistro-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 726,
+            "categories": [
+                {
+                    "alias": "southern",
+                    "title": "Southern"
+                },
+                {
+                    "alias": "newamerican",
+                    "title": "New American"
+                },
+                {
+                    "alias": "comfortfood",
+                    "title": "Comfort Food"
+                }
+            ],
+            "rating": 4.3,
+            "coordinates": {
+                "latitude": 36.096917157621,
+                "longitude": -80.2567209
+            },
+            "transactions": [
+                "delivery"
+            ],
+            "price": "$$",
+            "location": {
+                "address1": "878 W 4th St",
+                "address2": "",
+                "address3": "",
+                "city": "Winston Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "878 W 4th St",
+                    "Winston Salem, NC 27101"
+                ]
+            },
+            "phone": "+13367035400",
+            "display_phone": "(336) 703-5400",
+            "distance": 11422.98682882051,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": null,
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "Bfn8XI1N4bwTa5FMZ1u7eg",
+            "alias": "six-hundredº-winston-salem",
+            "name": "Six Hundredº",
+            "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/VaIyAuWD9Qum8aivHkbVFQ/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/six-hundred%C2%BA-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 151,
+            "categories": [
+                {
+                    "alias": "steak",
+                    "title": "Steakhouses"
+                },
+                {
+                    "alias": "bars",
+                    "title": "Bars"
+                }
+            ],
+            "rating": 4.1,
+            "coordinates": {
+                "latitude": 36.10000147755967,
+                "longitude": -80.24148106981038
+            },
+            "transactions": [],
+            "price": "$$$",
+            "location": {
+                "address1": "450 N Patterson Ave",
+                "address2": "Ste 120",
+                "address3": null,
+                "city": "Winston-Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "450 N Patterson Ave",
+                    "Ste 120",
+                    "Winston-Salem, NC 27101"
+                ]
+            },
+            "phone": "+13362836754",
+            "display_phone": "(336) 283-6754",
+            "distance": 10106.174466082619,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2100",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2100",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2100",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2100",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2200",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2200",
+                            "day": 5
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": null,
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "jOWfhKRhpOEFLkfLsbap2w",
+            "alias": "the-katharine-brasserie-and-bar-winston-salem-2",
+            "name": "The Katharine Brasserie & Bar",
+            "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/OZhuoHsksm3dt_wsnjnl7Q/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/the-katharine-brasserie-and-bar-winston-salem-2?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 259,
+            "categories": [
+                {
+                    "alias": "french",
+                    "title": "French"
+                },
+                {
+                    "alias": "wine_bars",
+                    "title": "Wine Bars"
+                },
+                {
+                    "alias": "brasseries",
+                    "title": "Brasseries"
+                }
+            ],
+            "rating": 3.9,
+            "coordinates": {
+                "latitude": 36.09876450127131,
+                "longitude": -80.24389466248336
+            },
+            "transactions": [
+                "pickup",
+                "delivery"
+            ],
+            "price": "$$$",
+            "location": {
+                "address1": "401 N Main St",
+                "address2": "",
+                "address3": null,
+                "city": "Winston-Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "401 N Main St",
+                    "Winston-Salem, NC 27101"
+                ]
+            },
+            "phone": "+13367610203",
+            "display_phone": "(336) 761-0203",
+            "distance": 10362.30115559803,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "0630",
+                            "end": "1000",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "1400",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1500",
+                            "end": "2300",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0630",
+                            "end": "1000",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "1400",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1500",
+                            "end": "2300",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0630",
+                            "end": "1000",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "1400",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1500",
+                            "end": "2300",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0630",
+                            "end": "1000",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "1400",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1500",
+                            "end": "2300",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0630",
+                            "end": "1000",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "1400",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1500",
+                            "end": "2300",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0630",
+                            "end": "1400",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1500",
+                            "end": "2300",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0630",
+                            "end": "1400",
+                            "day": 6
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1500",
+                            "end": "2300",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": "https://katharinebrasserie.com/menus",
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "6D2B_Y7B9vlI_nvYajIbCg",
+            "alias": "di-lisios-winston-salem",
+            "name": "Di Lisio's",
+            "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/AOyOe0EQkgmpsLLd5sRl2Q/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/di-lisios-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 373,
+            "categories": [
+                {
+                    "alias": "italian",
+                    "title": "Italian"
+                }
+            ],
+            "rating": 4.4,
+            "coordinates": {
+                "latitude": 36.09100415965598,
+                "longitude": -80.24621191505622
+            },
+            "transactions": [
+                "delivery"
+            ],
+            "price": "$$",
+            "location": {
+                "address1": "301 Brookstown Ave",
+                "address2": "Ste 100",
+                "address3": "",
+                "city": "Winston-Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "301 Brookstown Ave",
+                    "Ste 100",
+                    "Winston-Salem, NC 27101"
+                ]
+            },
+            "phone": "+13365467202",
+            "display_phone": "(336) 546-7202",
+            "distance": 11057.29104309896,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1600",
+                            "end": "2100",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1600",
+                            "end": "2100",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1600",
+                            "end": "2100",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1600",
+                            "end": "2200",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1600",
+                            "end": "2200",
+                            "day": 5
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": null,
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "OqmKMlAdMrWp_FXhXo3QZg",
+            "alias": "oh-calcutta-winston-salem",
+            "name": "Oh' Calcutta",
+            "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/FiG5I0zmePIMVItom6Lypg/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/oh-calcutta-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 152,
+            "categories": [
+                {
+                    "alias": "indpak",
+                    "title": "Indian"
+                }
+            ],
+            "rating": 4.6,
+            "coordinates": {
+                "latitude": 36.09801,
+                "longitude": -80.2475
+            },
+            "transactions": [
+                "pickup",
+                "restaurant_reservation",
+                "delivery"
+            ],
+            "location": {
+                "address1": "310 W 4th St",
+                "address2": "",
+                "address3": null,
+                "city": "Winston-Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "310 W 4th St",
+                    "Winston-Salem, NC 27101"
+                ]
+            },
+            "phone": "+13369998855",
+            "display_phone": "(336) 999-8855",
+            "distance": 10680.327904296484,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1630",
+                            "end": "2100",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1630",
+                            "end": "2100",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1630",
+                            "end": "2100",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1130",
+                            "end": "1430",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1630",
+                            "end": "2130",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1200",
+                            "end": "2130",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1200",
+                            "end": "2100",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": "https://ohcalcuttaws.com/our-menu/",
+                "open24_hours": null,
+                "waitlist_reservation": true
+            }
+        },
+        {
+            "id": "mjHi49hXxXPXRFSXgHFiFQ",
+            "alias": "tulum-bar-and-grill-winston-salem",
+            "name": "Tulum Bar & Grill",
+            "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/2bm6qXjK8Yx9sUeIbPj5WA/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/tulum-bar-and-grill-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 100,
+            "categories": [
+                {
+                    "alias": "mexican",
+                    "title": "Mexican"
+                },
+                {
+                    "alias": "bars",
+                    "title": "Bars"
+                }
+            ],
+            "rating": 4.5,
+            "coordinates": {
+                "latitude": 36.09860432114843,
+                "longitude": -80.24679212242766
+            },
+            "transactions": [
+                "pickup",
+                "delivery"
+            ],
+            "price": "$$",
+            "location": {
+                "address1": "411 N Cherry St",
+                "address2": "",
+                "address3": null,
+                "city": "Winston-Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "411 N Cherry St",
+                    "Winston-Salem, NC 27101"
+                ]
+            },
+            "phone": "+13364485486",
+            "display_phone": "(336) 448-5486",
+            "distance": 10583.181319985273,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2200",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2200",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2200",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2200",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2200",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2200",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1300",
+                            "end": "2100",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": "https://tulumws.com/menu/",
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "PWdZz-m1BR9jM3g8w28Hkw",
+            "alias": "sage-and-salt-bistro-winston-salem",
+            "name": "Sage & Salt Bistro",
+            "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/VYji3lAHfIUa6X1uwFuzXw/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/sage-and-salt-bistro-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 90,
+            "categories": [
+                {
+                    "alias": "newamerican",
+                    "title": "New American"
+                },
+                {
+                    "alias": "wine_bars",
+                    "title": "Wine Bars"
+                },
+                {
+                    "alias": "cocktailbars",
+                    "title": "Cocktail Bars"
+                }
+            ],
+            "rating": 4.3,
+            "coordinates": {
+                "latitude": 36.092127,
+                "longitude": -80.244228
+            },
+            "transactions": [],
+            "price": "$$$",
+            "location": {
+                "address1": "300 S Liberty St",
+                "address2": "Ste 125",
+                "address3": null,
+                "city": "Winston-Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "300 S Liberty St",
+                    "Ste 125",
+                    "Winston-Salem, NC 27101"
+                ]
+            },
+            "phone": "+13368295007",
+            "display_phone": "(336) 829-5007",
+            "distance": 10840.718537796156,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1600",
+                            "end": "2100",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1600",
+                            "end": "2100",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1600",
+                            "end": "2100",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1600",
+                            "end": "2100",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1600",
+                            "end": "2200",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1600",
+                            "end": "2200",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1600",
+                            "end": "2100",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": null,
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "7_XOjTtwpIy5lvGCVh5kJA",
+            "alias": "jeffrey-adams-on-fourth-winston-salem",
+            "name": "Jeffrey Adams on Fourth",
+            "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/f2xe1-6AJsSSaMhULB1GKw/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/jeffrey-adams-on-fourth-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 337,
+            "categories": [
+                {
+                    "alias": "steak",
+                    "title": "Steakhouses"
+                },
+                {
+                    "alias": "tradamerican",
+                    "title": "American"
+                }
+            ],
+            "rating": 3.8,
+            "coordinates": {
+                "latitude": 36.0980984397795,
+                "longitude": -80.2478919579179
+            },
+            "transactions": [
+                "delivery"
+            ],
+            "price": "$$$",
+            "location": {
+                "address1": "321 W Fourth St",
+                "address2": "",
+                "address3": "",
+                "city": "Winston-Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "321 W Fourth St",
+                    "Winston-Salem, NC 27101"
+                ]
+            },
+            "phone": "+13364481714",
+            "display_phone": "(336) 448-1714",
+            "distance": 10696.259029415169,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1600",
+                            "end": "2100",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1600",
+                            "end": "2100",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1600",
+                            "end": "2100",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1600",
+                            "end": "2200",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1600",
+                            "end": "2200",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1600",
+                            "end": "2100",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": "http://jeffreyadamsws.com/wp-content/uploads/2016/04/JeffreyAdams_Lunch-Spring-2016.pdf",
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "F_BM9pn_YDyD_Nzo3-GRqg",
+            "alias": "fourth-street-filling-station-winston-salem",
+            "name": "Fourth Street Filling Station",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/QFU2VI6Upwr1fWW_N_vobA/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/fourth-street-filling-station-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 402,
+            "categories": [
+                {
+                    "alias": "newamerican",
+                    "title": "New American"
+                }
+            ],
+            "rating": 3.8,
+            "coordinates": {
+                "latitude": 36.0971837,
+                "longitude": -80.25661275981302
+            },
+            "transactions": [
+                "delivery"
+            ],
+            "price": "$$",
+            "location": {
+                "address1": "871 W 4th St",
+                "address2": "",
+                "address3": "",
+                "city": "Winston Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "871 W 4th St",
+                    "Winston Salem, NC 27101"
+                ]
+            },
+            "phone": "+13367247600",
+            "display_phone": "(336) 724-7600",
+            "distance": 11398.420721751683,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2200",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2200",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1000",
+                            "end": "1500",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": "http://theoldfourthstreetfillingstation.com/wp-content/uploads/2017/08/FourthStreet_DinnerList-8-28-17.pdf",
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "LuTHrwBaqAyCQ4kWYZEA5Q",
+            "alias": "sweet-potatoes-winston-salem",
+            "name": "Sweet Potatoes",
+            "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/18gei8XW7uYVjNY-JuU7mw/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/sweet-potatoes-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 915,
+            "categories": [
+                {
+                    "alias": "southern",
+                    "title": "Southern"
+                },
+                {
+                    "alias": "soulfood",
+                    "title": "Soul Food"
+                }
+            ],
+            "rating": 4.2,
+            "coordinates": {
+                "latitude": 36.101798,
+                "longitude": -80.246039
+            },
+            "transactions": [
+                "delivery"
+            ],
+            "price": "$$",
+            "location": {
+                "address1": "607 N Trade St NW",
+                "address2": "",
+                "address3": null,
+                "city": "Winston-Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "607 N Trade St NW",
+                    "Winston-Salem, NC 27101"
+                ]
+            },
+            "phone": "+13367274844",
+            "display_phone": "(336) 727-4844",
+            "distance": 10323.990549693246,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2100",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2100",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2100",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1130",
+                            "end": "1500",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2100",
+                            "day": 5
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": "",
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "2nDWUKqlxNGI5dnhtnAcbA",
+            "alias": "el-rancho-taqueria-winston-salem",
+            "name": "El Rancho Taqueria",
+            "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/532HWA_7Cp58EfwBwE9C7g/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/el-rancho-taqueria-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 255,
+            "categories": [
+                {
+                    "alias": "mexican",
+                    "title": "Mexican"
+                }
+            ],
+            "rating": 4.5,
+            "coordinates": {
+                "latitude": 36.0687386579793,
+                "longitude": -80.2264884400916
+            },
+            "transactions": [
+                "pickup",
+                "delivery"
+            ],
+            "price": "$",
+            "location": {
+                "address1": "613 E Sprague St",
+                "address2": "",
+                "address3": "",
+                "city": "Winston-Salem",
+                "zip_code": "27107",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "613 E Sprague St",
+                    "Winston-Salem, NC 27107"
+                ]
+            },
+            "phone": "+13367859112",
+            "display_phone": "(336) 785-9112",
+            "distance": 11648.197864160851,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1000",
+                            "end": "2100",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1000",
+                            "end": "2100",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1000",
+                            "end": "2100",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1000",
+                            "end": "2100",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1000",
+                            "end": "2200",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1000",
+                            "end": "2200",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1000",
+                            "end": "2100",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": null,
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "qb5MDUfXj5ElpyC2T_W-Hg",
+            "alias": "outwest-kernersville",
+            "name": "Outwest",
+            "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/9njZLjuLCViUTBVaYiRC9Q/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/outwest-kernersville?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 306,
+            "categories": [
+                {
+                    "alias": "steak",
+                    "title": "Steakhouses"
+                }
+            ],
+            "rating": 4.0,
+            "coordinates": {
+                "latitude": 36.098817161144,
+                "longitude": -80.06051823431343
+            },
+            "transactions": [
+                "pickup",
+                "delivery"
+            ],
+            "price": "$$",
+            "location": {
+                "address1": "1185 NC Hwy 66 S",
+                "address2": "",
+                "address3": "",
+                "city": "Kernersville",
+                "zip_code": "27284",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "1185 NC Hwy 66 S",
+                    "Kernersville, NC 27284"
+                ]
+            },
+            "phone": "+13369932222",
+            "display_phone": "(336) 993-2222",
+            "distance": 10195.46736841871,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1630",
+                            "end": "2100",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1630",
+                            "end": "2100",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1630",
+                            "end": "2100",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1630",
+                            "end": "2100",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1630",
+                            "end": "2200",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1630",
+                            "end": "2200",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1130",
+                            "end": "2100",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": "http://www.theoutwest.com/menu/",
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "4gjqrL_nISK4KEzBx-pPGg",
+            "alias": "new-sichuan-winston-salem",
+            "name": "New Sichuan",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/j7n-tKFLciAxQB663LUjAA/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/new-sichuan-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 201,
+            "categories": [
+                {
+                    "alias": "szechuan",
+                    "title": "Szechuan"
+                }
+            ],
+            "rating": 4.4,
+            "coordinates": {
+                "latitude": 36.070254,
+                "longitude": -80.270751
+            },
+            "transactions": [
+                "pickup",
+                "delivery"
+            ],
+            "price": "$$",
+            "location": {
+                "address1": "2125 Silas Creek Pkwy",
+                "address2": null,
+                "address3": "",
+                "city": "Winston-Salem",
+                "zip_code": "27103",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "2125 Silas Creek Pkwy",
+                    "Winston-Salem, NC 27103"
+                ]
+            },
+            "phone": "+13368423418",
+            "display_phone": "(336) 842-3418",
+            "distance": 14230.543492946414,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1200",
+                            "end": "2100",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": "https://newsichuannc.com/menu.php",
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "n-qvQSo1pMAOs5zq4gRJDw",
+            "alias": "the-barcelona-burger-and-beer-garden-winston-salem",
+            "name": "The Barcelona Burger and Beer Garden",
+            "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/xW3_Jcaj9ZKl8UneXKp7yg/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/the-barcelona-burger-and-beer-garden-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 128,
+            "categories": [
+                {
+                    "alias": "beergardens",
+                    "title": "Beer Gardens"
+                },
+                {
+                    "alias": "burgers",
+                    "title": "Burgers"
+                },
+                {
+                    "alias": "chickenshop",
+                    "title": "Chicken Shop"
+                }
+            ],
+            "rating": 4.5,
+            "coordinates": {
+                "latitude": 36.099321,
+                "longitude": -80.241412
+            },
+            "transactions": [],
+            "price": "$$",
+            "location": {
+                "address1": "450 N Patterson Ave",
+                "address2": "",
+                "address3": null,
+                "city": "Winston-Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "450 N Patterson Ave",
+                    "Winston-Salem, NC 27101"
+                ]
+            },
+            "phone": "",
+            "display_phone": "",
+            "distance": 10145.48215845839,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "1400",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2030",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "1400",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2030",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "1400",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2030",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "1400",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2030",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "1400",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2030",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2030",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2030",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": false
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": "https://barcelonaburger.com/menu",
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "Nx_PIMSduDjDW1qYbkPDGA",
+            "alias": "young-cardinal-cafe-winston-salem",
+            "name": "Young Cardinal Cafe",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/C6ZLZln2ENfzQoPLC-mXMg/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/young-cardinal-cafe-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 286,
+            "categories": [
+                {
+                    "alias": "breakfast_brunch",
+                    "title": "Breakfast & Brunch"
+                },
+                {
+                    "alias": "cafes",
+                    "title": "Cafes"
+                },
+                {
+                    "alias": "cocktailbars",
+                    "title": "Cocktail Bars"
+                }
+            ],
+            "rating": 4.6,
+            "coordinates": {
+                "latitude": 36.09789,
+                "longitude": -80.248681
+            },
+            "transactions": [
+                "delivery"
+            ],
+            "price": "$$",
+            "location": {
+                "address1": "424 4th St NW",
+                "address2": "",
+                "address3": null,
+                "city": "Winston-Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "424 4th St NW",
+                    "Winston-Salem, NC 27101"
+                ]
+            },
+            "phone": "+13364485188",
+            "display_phone": "(336) 448-5188",
+            "distance": 10767.401688691012,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "0800",
+                            "end": "1500",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0800",
+                            "end": "1500",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0800",
+                            "end": "1500",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0800",
+                            "end": "1500",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0800",
+                            "end": "1500",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0800",
+                            "end": "1500",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0800",
+                            "end": "1500",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": false
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": null,
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "8cPXcxBRu9W9APh82KE-xw",
+            "alias": "cin-cin-burger-bar-winston-salem",
+            "name": "Cin Cin Burger BAR",
+            "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/csnDuQTeynoS8eAcmCGSqA/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/cin-cin-burger-bar-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 658,
+            "categories": [
+                {
+                    "alias": "burgers",
+                    "title": "Burgers"
+                },
+                {
+                    "alias": "bars",
+                    "title": "Bars"
+                },
+                {
+                    "alias": "tapasmallplates",
+                    "title": "Tapas/Small Plates"
+                }
+            ],
+            "rating": 4.1,
+            "coordinates": {
+                "latitude": 36.0928330273355,
+                "longitude": -80.264579065446
+            },
+            "transactions": [
+                "pickup",
+                "delivery"
+            ],
+            "price": "$$",
+            "location": {
+                "address1": "1425 W 1st St",
+                "address2": "",
+                "address3": null,
+                "city": "Winston-Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "1425 W 1st St",
+                    "Winston-Salem, NC 27101"
+                ]
+            },
+            "phone": "+13369998413",
+            "display_phone": "(336) 999-8413",
+            "distance": 12262.335308217582,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": "http://cincinburgerbar.com/food/",
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "lUg-CC5ZnJBfLe3uKFvO4g",
+            "alias": "the-remedy-cafe-and-bar-winston-salem",
+            "name": "The Remedy Cafe & Bar",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/aXjwr7vnqtiAq-qF5NbzwQ/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/the-remedy-cafe-and-bar-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 57,
+            "categories": [
+                {
+                    "alias": "cafes",
+                    "title": "Cafes"
+                },
+                {
+                    "alias": "coffee",
+                    "title": "Coffee & Tea"
+                },
+                {
+                    "alias": "bars",
+                    "title": "Bars"
+                }
+            ],
+            "rating": 4.6,
+            "coordinates": {
+                "latitude": 36.1009502731935,
+                "longitude": -80.26070565624534
+            },
+            "transactions": [],
+            "price": "$",
+            "location": {
+                "address1": "492 W End Blvd",
+                "address2": "",
+                "address3": null,
+                "city": "Winston-Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "492 W End Blvd",
+                    "Winston-Salem, NC 27101"
+                ]
+            },
+            "phone": "",
+            "display_phone": "",
+            "distance": 11484.629863044811,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "0800",
+                            "end": "2100",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0800",
+                            "end": "2200",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0800",
+                            "end": "2200",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0800",
+                            "end": "2200",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0800",
+                            "end": "2300",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0800",
+                            "end": "2300",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0800",
+                            "end": "2000",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": null,
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "LnQzwwvxigDDieKJxQYy1w",
+            "alias": "bobby-boy-bakeshop-winston-salem",
+            "name": "Bobby Boy Bakeshop",
+            "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/V4aSGCRqvvDXcnqD7M-3Ow/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/bobby-boy-bakeshop-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 209,
+            "categories": [
+                {
+                    "alias": "bakeries",
+                    "title": "Bakeries"
+                },
+                {
+                    "alias": "desserts",
+                    "title": "Desserts"
+                },
+                {
+                    "alias": "sandwiches",
+                    "title": "Sandwiches"
+                }
+            ],
+            "rating": 4.7,
+            "coordinates": {
+                "latitude": 36.1065,
+                "longitude": -80.26684
+            },
+            "transactions": [],
+            "price": "$$",
+            "location": {
+                "address1": "1100 Reynolda Rd",
+                "address2": "Ste 100",
+                "address3": null,
+                "city": "Winston-Salem",
+                "zip_code": "27104",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "1100 Reynolda Rd",
+                    "Ste 100",
+                    "Winston-Salem, NC 27104"
+                ]
+            },
+            "phone": "+13369553284",
+            "display_phone": "(336) 955-3284",
+            "distance": 11653.417193430816,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "0700",
+                            "end": "1700",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0700",
+                            "end": "1700",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0700",
+                            "end": "1700",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0700",
+                            "end": "1700",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0700",
+                            "end": "1700",
+                            "day": 5
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": false
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": null,
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "qbN4qOivsfFVndcvv7hvYQ",
+            "alias": "1703-restaurant-and-catering-winston-salem",
+            "name": "1703 Restaurant & Catering",
+            "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/jDtCmVftOWMOB3acqYq0AQ/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/1703-restaurant-and-catering-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 78,
+            "categories": [
+                {
+                    "alias": "tradamerican",
+                    "title": "American"
+                },
+                {
+                    "alias": "seafood",
+                    "title": "Seafood"
+                }
+            ],
+            "rating": 4.5,
+            "coordinates": {
+                "latitude": 36.10692623259198,
+                "longitude": -80.26756836564137
+            },
+            "transactions": [
+                "delivery"
+            ],
+            "price": "$$$",
+            "location": {
+                "address1": "1703 Robinhood Rd",
+                "address2": "",
+                "address3": "",
+                "city": "Winston Salem",
+                "zip_code": "27104",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "1703 Robinhood Rd",
+                    "Winston Salem, NC 27104"
+                ]
+            },
+            "phone": "+13367255767",
+            "display_phone": "(336) 725-5767",
+            "distance": 11704.355216820655,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1130",
+                            "end": "1400",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1730",
+                            "end": "2100",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1130",
+                            "end": "1400",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1730",
+                            "end": "2100",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1130",
+                            "end": "1400",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1730",
+                            "end": "2100",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1130",
+                            "end": "1400",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1730",
+                            "end": "2100",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1730",
+                            "end": "2100",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1030",
+                            "end": "1400",
+                            "day": 6
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1730",
+                            "end": "2100",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": "",
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "E_2dYjYEFUNCXGjTP2csfg",
+            "alias": "spring-house-restaurant-kitchen-and-bar-winston-salem",
+            "name": "Spring House Restaurant, Kitchen & Bar",
+            "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/X3bWsolmPfuqKjLxmJT_Gw/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/spring-house-restaurant-kitchen-and-bar-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 222,
+            "categories": [
+                {
+                    "alias": "newamerican",
+                    "title": "New American"
+                },
+                {
+                    "alias": "southern",
+                    "title": "Southern"
+                }
+            ],
+            "rating": 3.9,
+            "coordinates": {
+                "latitude": 36.09854,
+                "longitude": -80.25324
+            },
+            "transactions": [
+                "delivery"
+            ],
+            "price": "$$$",
+            "location": {
+                "address1": "450 N Spring St",
+                "address2": "",
+                "address3": "",
+                "city": "Winston-Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "450 N Spring St",
+                    "Winston-Salem, NC 27101"
+                ]
+            },
+            "phone": "+13362934797",
+            "display_phone": "(336) 293-4797",
+            "distance": 11068.877328073479,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2100",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2100",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2100",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2100",
+                            "day": 5
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": "http://springhousenc.com/menus/",
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "dccfTgFO__O9xJQOY8k6OA",
+            "alias": "6th-and-vine-winston-salem-3",
+            "name": "6th And Vine",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/8CuSVhkWZUVfF70edNbVUQ/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/6th-and-vine-winston-salem-3?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 323,
+            "categories": [
+                {
+                    "alias": "newamerican",
+                    "title": "New American"
+                },
+                {
+                    "alias": "bars",
+                    "title": "Bars"
+                },
+                {
+                    "alias": "breakfast_brunch",
+                    "title": "Breakfast & Brunch"
+                }
+            ],
+            "rating": 3.9,
+            "coordinates": {
+                "latitude": 36.10161,
+                "longitude": -80.24662
+            },
+            "transactions": [
+                "delivery"
+            ],
+            "price": "$$",
+            "location": {
+                "address1": "209 W 6th St",
+                "address2": "",
+                "address3": "",
+                "city": "Winston-Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "209 W 6th St",
+                    "Winston-Salem, NC 27101"
+                ]
+            },
+            "phone": "+13367255577",
+            "display_phone": "(336) 725-5577",
+            "distance": 10399.71766713267,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1600",
+                            "end": "2100",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1600",
+                            "end": "2100",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2200",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2200",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2000",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": null,
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "O2fQJIgdnBPQcVJlQxJSPg",
+            "alias": "lasso-gaucho-winston-salem-no-title",
+            "name": "Lasso Gaucho Winston-Salem",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/cQH7CAhcVqTlAfXdKZQ13g/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/lasso-gaucho-winston-salem-no-title?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 30,
+            "categories": [
+                {
+                    "alias": "brazilian",
+                    "title": "Brazilian"
+                },
+                {
+                    "alias": "steak",
+                    "title": "Steakhouses"
+                }
+            ],
+            "rating": 4.9,
+            "coordinates": {
+                "latitude": 36.0944,
+                "longitude": -80.2431
+            },
+            "transactions": [
+                "pickup",
+                "restaurant_reservation",
+                "delivery"
+            ],
+            "location": {
+                "address1": "115 South Main St",
+                "address2": null,
+                "address3": "",
+                "city": "Winston-Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "115 South Main St",
+                    "Winston-Salem, NC 27101"
+                ]
+            },
+            "phone": "+13362936702",
+            "display_phone": "(336) 293-6702",
+            "distance": 10609.444545899154,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1600",
+                            "end": "2130",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1600",
+                            "end": "2130",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1600",
+                            "end": "2130",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1600",
+                            "end": "2130",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1200",
+                            "end": "2200",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1200",
+                            "end": "2200",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1200",
+                            "end": "2100",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": null,
+                "open24_hours": null,
+                "waitlist_reservation": true
+            }
+        },
+        {
+            "id": "fJ_2cMTyIuOOeJYaUxwfag",
+            "alias": "thai-harmony-winston-salem",
+            "name": "Thai Harmony",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/SylX2G_R0masi_FCy9bcJQ/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/thai-harmony-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 373,
+            "categories": [
+                {
+                    "alias": "sushi",
+                    "title": "Sushi Bars"
+                },
+                {
+                    "alias": "thai",
+                    "title": "Thai"
+                },
+                {
+                    "alias": "bars",
+                    "title": "Bars"
+                }
+            ],
+            "rating": 4.2,
+            "coordinates": {
+                "latitude": 36.096902,
+                "longitude": -80.245109
+            },
+            "transactions": [
+                "pickup",
+                "delivery"
+            ],
+            "price": "$$",
+            "location": {
+                "address1": "102 W 3rd St",
+                "address2": null,
+                "address3": "",
+                "city": "Winston-Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "102 W 3rd St",
+                    "Winston-Salem, NC 27101"
+                ]
+            },
+            "phone": "+13368425532",
+            "display_phone": "(336) 842-5532",
+            "distance": 10573.61614138523,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "1500",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2200",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "1500",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2200",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "1500",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2200",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "1500",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2200",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "1500",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2200",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2200",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1200",
+                            "end": "2100",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": "https://thai-harmony.com/menu",
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "1IFOPLjm5RwSWXRisds49w",
+            "alias": "cibo-trattoria-winston-salem",
+            "name": "Cibo Trattoria",
+            "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/f0t8G4PkuczKA2ds5WftBQ/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/cibo-trattoria-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 113,
+            "categories": [
+                {
+                    "alias": "italian",
+                    "title": "Italian"
+                }
+            ],
+            "rating": 4.2,
+            "coordinates": {
+                "latitude": 36.10158489971271,
+                "longitude": -80.24508576840162
+            },
+            "transactions": [
+                "pickup",
+                "delivery"
+            ],
+            "location": {
+                "address1": "601 N Liberty St",
+                "address2": "",
+                "address3": "",
+                "city": "Winston-Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "601 N Liberty St",
+                    "Winston-Salem, NC 27101"
+                ]
+            },
+            "phone": "+13365296999",
+            "display_phone": "(336) 529-6999",
+            "distance": 10266.846002776978,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2100",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2100",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2100",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2130",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1630",
+                            "end": "2130",
+                            "day": 5
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": "https://static1.squarespace.com/static/5f0e2420d001736560e35881/t/6014507bc93ef3000c39d1be/1611944069293/February+Drinks+and+Dessert.pdf",
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "cD6jtJ5IFDxPd2I8nb4ZiQ",
+            "alias": "krankies-winston-salem",
+            "name": "Krankies",
+            "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/AzuQmJs7senZnkXoG5xkdw/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/krankies-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 635,
+            "categories": [
+                {
+                    "alias": "coffee",
+                    "title": "Coffee & Tea"
+                },
+                {
+                    "alias": "bars",
+                    "title": "Bars"
+                },
+                {
+                    "alias": "breakfast_brunch",
+                    "title": "Breakfast & Brunch"
+                }
+            ],
+            "rating": 4.1,
+            "coordinates": {
+                "latitude": 36.0982326410235,
+                "longitude": -80.2409246323113
+            },
+            "transactions": [
+                "delivery"
+            ],
+            "price": "$$",
+            "location": {
+                "address1": "211 E 3rd St",
+                "address2": "",
+                "address3": "",
+                "city": "Winston-Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "211 E 3rd St",
+                    "Winston-Salem, NC 27101"
+                ]
+            },
+            "phone": "+13367223016",
+            "display_phone": "(336) 722-3016",
+            "distance": 10184.920461362186,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "0800",
+                            "end": "1500",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0800",
+                            "end": "1500",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0800",
+                            "end": "1500",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0800",
+                            "end": "1500",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0800",
+                            "end": "1500",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0800",
+                            "end": "1400",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0800",
+                            "end": "1400",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": false
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": "http://www.krankiescoffee.com/pages/kitchen",
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "47S7UNB03XzbSTYk_R2O6w",
+            "alias": "foothills-brewing-winston-salem-6",
+            "name": "Foothills Brewing",
+            "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/XwMebc51pNlgI288IFMYaw/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/foothills-brewing-winston-salem-6?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 706,
+            "categories": [
+                {
+                    "alias": "tradamerican",
+                    "title": "American"
+                },
+                {
+                    "alias": "brewpubs",
+                    "title": "Brewpubs"
+                },
+                {
+                    "alias": "wraps",
+                    "title": "Wraps"
+                }
+            ],
+            "rating": 3.9,
+            "coordinates": {
+                "latitude": 36.0975642286051,
+                "longitude": -80.2509007754631
+            },
+            "transactions": [
+                "pickup",
+                "delivery"
+            ],
+            "price": "$$",
+            "location": {
+                "address1": "638 W 4th St",
+                "address2": "",
+                "address3": "",
+                "city": "Winston Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "638 W 4th St",
+                    "Winston Salem, NC 27101"
+                ]
+            },
+            "phone": "+13367773348",
+            "display_phone": "(336) 777-3348",
+            "distance": 10951.112304610104,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "0000",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "0000",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "0000",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "0000",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "0000",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "0000",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "0000",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": "http://www.foothillsbrewing.com/foothills-pub/menus/",
+                "open24_hours": null,
+                "waitlist_reservation": true
+            }
+        },
+        {
+            "id": "JYn2FHhlNTKyUQAc_zngIA",
+            "alias": "hungry-palate-bar-and-grill-winston-salem-2",
+            "name": "Hungry Palate Bar & Grill",
+            "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/5LZlGxaJqHcb3Gas6CEbew/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/hungry-palate-bar-and-grill-winston-salem-2?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 58,
+            "categories": [
+                {
+                    "alias": "tradamerican",
+                    "title": "American"
+                },
+                {
+                    "alias": "bars",
+                    "title": "Bars"
+                },
+                {
+                    "alias": "chicken_wings",
+                    "title": "Chicken Wings"
+                }
+            ],
+            "rating": 4.5,
+            "coordinates": {
+                "latitude": 36.098483963722266,
+                "longitude": -80.24643449999999
+            },
+            "transactions": [
+                "pickup",
+                "delivery"
+            ],
+            "location": {
+                "address1": "239 W 4th St",
+                "address2": "",
+                "address3": null,
+                "city": "Winston-Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "239 W 4th St",
+                    "Winston-Salem, NC 27101"
+                ]
+            },
+            "phone": "+13362938857",
+            "display_phone": "(336) 293-8857",
+            "distance": 10564.941332009772,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2200",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2200",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2300",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2300",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": "https://hungrypalatews.com/menu/",
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "zIMWXOuWEhG3Qx3tMIK14w",
+            "alias": "the-downtown-grille-no-title",
+            "name": "The Downtown Grille",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/regzcAgAQQ2udCutenwz5w/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/the-downtown-grille-no-title?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 26,
+            "categories": [
+                {
+                    "alias": "steak",
+                    "title": "Steakhouses"
+                }
+            ],
+            "rating": 4.8,
+            "coordinates": {
+                "latitude": 36.09875,
+                "longitude": -80.24939
+            },
+            "transactions": [],
+            "location": {
+                "address1": "500 West 5th St",
+                "address2": null,
+                "address3": "",
+                "city": "Winston-Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "500 West 5th St",
+                    "Winston-Salem, NC 27101"
+                ]
+            },
+            "phone": "+13369301485",
+            "display_phone": "(336) 930-1485",
+            "distance": 10769.048770800837,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1630",
+                            "end": "2100",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1630",
+                            "end": "2100",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1630",
+                            "end": "2100",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1630",
+                            "end": "2200",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1630",
+                            "end": "2200",
+                            "day": 5
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": null,
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "fyF-hnn5m3IvQ7Da_lThEg",
+            "alias": "west-end-cafe-winston-salem",
+            "name": "West End Cafe",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/Epdb9Tv5F4fnrKwZg_bppQ/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/west-end-cafe-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 185,
+            "categories": [
+                {
+                    "alias": "newamerican",
+                    "title": "New American"
+                },
+                {
+                    "alias": "sandwiches",
+                    "title": "Sandwiches"
+                }
+            ],
+            "rating": 3.9,
+            "coordinates": {
+                "latitude": 36.09642,
+                "longitude": -80.25753
+            },
+            "transactions": [
+                "delivery"
+            ],
+            "price": "$$",
+            "location": {
+                "address1": "926 W 4th St",
+                "address2": "",
+                "address3": "",
+                "city": "Winston Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "926 W 4th St",
+                    "Winston Salem, NC 27101"
+                ]
+            },
+            "phone": "+13367234774",
+            "display_phone": "(336) 723-4774",
+            "distance": 11510.540514469234,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1200",
+                            "end": "2100",
+                            "day": 5
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": "http://www.westendcafe.com/menus",
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "1LF3BT2yvWkMQeBI_Iy9tw",
+            "alias": "spotted-cow-steakhouse-winston-salem",
+            "name": "Spotted Cow Steakhouse",
+            "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/VJc3VXre4j1Upkk-bynLog/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/spotted-cow-steakhouse-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 57,
+            "categories": [
+                {
+                    "alias": "steak",
+                    "title": "Steakhouses"
+                },
+                {
+                    "alias": "salad",
+                    "title": "Salad"
+                },
+                {
+                    "alias": "seafood",
+                    "title": "Seafood"
+                }
+            ],
+            "rating": 4.4,
+            "coordinates": {
+                "latitude": 36.10070961948086,
+                "longitude": -80.2459149
+            },
+            "transactions": [
+                "pickup",
+                "delivery"
+            ],
+            "location": {
+                "address1": "529 N Trade St",
+                "address2": "",
+                "address3": null,
+                "city": "Winston-Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "529 N Trade St",
+                    "Winston-Salem, NC 27101"
+                ]
+            },
+            "phone": "+13369998977",
+            "display_phone": "(336) 999-8977",
+            "distance": 10383.563205748213,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1630",
+                            "end": "2130",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1630",
+                            "end": "2130",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1630",
+                            "end": "2130",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1630",
+                            "end": "2200",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1630",
+                            "end": "2200",
+                            "day": 5
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": null,
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "f8MAChurVJGKk4WVemweXQ",
+            "alias": "finnigans-wake-irish-pub-winston-salem",
+            "name": "Finnigan's Wake Irish Pub",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/Xb6Um0slUi9li2IGkuYZsg/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/finnigans-wake-irish-pub-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 262,
+            "categories": [
+                {
+                    "alias": "irish",
+                    "title": "Irish"
+                },
+                {
+                    "alias": "pubs",
+                    "title": "Pubs"
+                },
+                {
+                    "alias": "salad",
+                    "title": "Salad"
+                }
+            ],
+            "rating": 3.9,
+            "coordinates": {
+                "latitude": 36.10194054389883,
+                "longitude": -80.24643992232566
+            },
+            "transactions": [
+                "delivery"
+            ],
+            "price": "$$",
+            "location": {
+                "address1": "620 N Trade St",
+                "address2": "",
+                "address3": "",
+                "city": "Winston-Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "620 N Trade St",
+                    "Winston-Salem, NC 27101"
+                ]
+            },
+            "phone": "+13367230322",
+            "display_phone": "(336) 723-0322",
+            "distance": 10344.85549009927,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1600",
+                            "end": "2200",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1200",
+                            "end": "2200",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1200",
+                            "end": "2300",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1200",
+                            "end": "2300",
+                            "day": 5
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": "https://www.finniganswake.com/lunch/lunch-starters",
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "2oczFbfWPPgXs9nH3LP-tg",
+            "alias": "dairi-o-kernersville",
+            "name": "Dairi-O",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/dy0xqbafSE_xqC0U_7gDlg/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/dairi-o-kernersville?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 164,
+            "categories": [
+                {
+                    "alias": "desserts",
+                    "title": "Desserts"
+                },
+                {
+                    "alias": "hotdog",
+                    "title": "Hot Dogs"
+                },
+                {
+                    "alias": "sandwiches",
+                    "title": "Sandwiches"
+                }
+            ],
+            "rating": 4.2,
+            "coordinates": {
+                "latitude": 36.08902547697914,
+                "longitude": -80.06330755379024
+            },
+            "transactions": [
+                "delivery"
+            ],
+            "price": "$",
+            "location": {
+                "address1": "1488 North Carolina Hwy 66 S",
+                "address2": "",
+                "address3": "",
+                "city": "Kernersville",
+                "zip_code": "27284",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "1488 North Carolina Hwy 66 S",
+                    "Kernersville, NC 27284"
+                ]
+            },
+            "phone": "+13364974565",
+            "display_phone": "(336) 497-4565",
+            "distance": 10701.266991727975,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1000",
+                            "end": "2200",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1000",
+                            "end": "2200",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1000",
+                            "end": "2200",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1000",
+                            "end": "2200",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1000",
+                            "end": "2300",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1000",
+                            "end": "2300",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1000",
+                            "end": "2200",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": "http://www.dairios.com/#!menu/c1jcn",
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "vNL-WGulhbUwLRHFyaphjw",
+            "alias": "nawab-indian-cuisine-winston-salem",
+            "name": "Nawab Indian Cuisine",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/knoyrThdf1fmK6c7rLP4iw/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/nawab-indian-cuisine-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 333,
+            "categories": [
+                {
+                    "alias": "indpak",
+                    "title": "Indian"
+                }
+            ],
+            "rating": 4.2,
+            "coordinates": {
+                "latitude": 36.0941931,
+                "longitude": -80.27652696564141
+            },
+            "transactions": [
+                "pickup",
+                "delivery"
+            ],
+            "price": "$$",
+            "location": {
+                "address1": "129 S Stratford Rd",
+                "address2": "",
+                "address3": "",
+                "city": "Winston Salem",
+                "zip_code": "27103",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "129 S Stratford Rd",
+                    "Winston Salem, NC 27103"
+                ]
+            },
+            "phone": "+13367253949",
+            "display_phone": "(336) 725-3949",
+            "distance": 13090.348267467924,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1130",
+                            "end": "1430",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2200",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1130",
+                            "end": "1430",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2200",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1130",
+                            "end": "1430",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2200",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1130",
+                            "end": "1430",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2200",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1130",
+                            "end": "1430",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2230",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1200",
+                            "end": "1500",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2230",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1200",
+                            "end": "1500",
+                            "day": 6
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2200",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": "https://www.nawabindiancuisine.com/index.php/menu/pdf-menu-category",
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "zI8q8Wc01BSCbPfSODUiyw",
+            "alias": "the-porch-kitchen-and-cantina-winston-salem",
+            "name": "The Porch Kitchen and Cantina",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/636F70Trxj4sl1QtzYrhGg/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/the-porch-kitchen-and-cantina-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 676,
+            "categories": [
+                {
+                    "alias": "tex-mex",
+                    "title": "Tex-Mex"
+                },
+                {
+                    "alias": "burgers",
+                    "title": "Burgers"
+                },
+                {
+                    "alias": "asianfusion",
+                    "title": "Asian Fusion"
+                }
+            ],
+            "rating": 3.8,
+            "coordinates": {
+                "latitude": 36.10372284719249,
+                "longitude": -80.25932247290409
+            },
+            "transactions": [
+                "pickup",
+                "delivery"
+            ],
+            "price": "$$",
+            "location": {
+                "address1": "840 Mill Works St",
+                "address2": "",
+                "address3": "",
+                "city": "Winston-Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "840 Mill Works St",
+                    "Winston-Salem, NC 27101"
+                ]
+            },
+            "phone": "+13368938361",
+            "display_phone": "(336) 893-8361",
+            "distance": 11221.080458695487,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1000",
+                            "end": "1500",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": "http://theporchws.com/menu/",
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "5smr6yGV-oYfHQKg8s61iw",
+            "alias": "bitty-and-beau-s-coffee-winston-salem",
+            "name": "Bitty & Beau’s Coffee",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/aLs6bPuIiEwClNgSuQHq6A/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/bitty-and-beau-s-coffee-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 77,
+            "categories": [
+                {
+                    "alias": "coffee",
+                    "title": "Coffee & Tea"
+                },
+                {
+                    "alias": "breakfast_brunch",
+                    "title": "Breakfast & Brunch"
+                },
+                {
+                    "alias": "juicebars",
+                    "title": "Juice Bars & Smoothies"
+                }
+            ],
+            "rating": 5.0,
+            "coordinates": {
+                "latitude": 36.098284,
+                "longitude": -80.248633
+            },
+            "transactions": [],
+            "location": {
+                "address1": "411 W 4th St",
+                "address2": "",
+                "address3": null,
+                "city": "Winston-Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "411 W 4th St",
+                    "Winston-Salem, NC 27101"
+                ]
+            },
+            "phone": "",
+            "display_phone": "",
+            "distance": 10738.754134641918,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "0800",
+                            "end": "1700",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0800",
+                            "end": "1700",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0800",
+                            "end": "1700",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0800",
+                            "end": "1700",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0800",
+                            "end": "1700",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0800",
+                            "end": "1700",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0800",
+                            "end": "1700",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": false
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": "https://www.bittyandbeauscoffee.com/menu/",
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "QknD53cYgiOv-otCpfv1yg",
+            "alias": "bernardins-restaurant-winston-salem",
+            "name": "Bernardin's Restaurant",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/DyYNiYkwcynxDPW7G402-g/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/bernardins-restaurant-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 150,
+            "categories": [
+                {
+                    "alias": "newamerican",
+                    "title": "New American"
+                }
+            ],
+            "rating": 3.9,
+            "coordinates": {
+                "latitude": 36.09738,
+                "longitude": -80.25715
+            },
+            "transactions": [],
+            "price": "$$$",
+            "location": {
+                "address1": "901 W 4th St",
+                "address2": "",
+                "address3": "",
+                "city": "Winston Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "901 W 4th St",
+                    "Winston Salem, NC 27101"
+                ]
+            },
+            "phone": "+13367256666",
+            "display_phone": "(336) 725-6666",
+            "distance": 11431.064047423497,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2030",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2030",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2030",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2030",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2030",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1700",
+                            "end": "2030",
+                            "day": 5
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": false
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": "http://www.bernardinsfinedining.com/winston/menus/",
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "c0g6Cwu8Ay2X9tAid2-G6w",
+            "alias": "sabor-latin-street-grill-winston-salem-2",
+            "name": "Sabor Latin Street Grill",
+            "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/zNZus1YwJi2NfwI8vg1yig/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/sabor-latin-street-grill-winston-salem-2?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 69,
+            "categories": [
+                {
+                    "alias": "latin",
+                    "title": "Latin American"
+                },
+                {
+                    "alias": "mexican",
+                    "title": "Mexican"
+                }
+            ],
+            "rating": 4.3,
+            "coordinates": {
+                "latitude": 36.09425,
+                "longitude": -80.27405
+            },
+            "transactions": [
+                "pickup",
+                "delivery"
+            ],
+            "price": "$$",
+            "location": {
+                "address1": "57 Miller St",
+                "address2": null,
+                "address3": "",
+                "city": "Winston-Salem",
+                "zip_code": "27104",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "57 Miller St",
+                    "Winston-Salem, NC 27104"
+                ]
+            },
+            "phone": "+13369551225",
+            "display_phone": "(336) 955-1225",
+            "distance": 12918.738050637872,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": "https://www.saborlatingrill.com/menu/",
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "wiGlubdR9XkkcucYqkA0GA",
+            "alias": "heff-s-burger-club-winston-salem",
+            "name": "Heff’s Burger Club",
+            "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/ZLn383WUXMI_QIpykMGloA/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/heff-s-burger-club-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 141,
+            "categories": [
+                {
+                    "alias": "burgers",
+                    "title": "Burgers"
+                }
+            ],
+            "rating": 4.1,
+            "coordinates": {
+                "latitude": 36.09864727631276,
+                "longitude": -80.24688863108747
+            },
+            "transactions": [
+                "pickup",
+                "delivery"
+            ],
+            "price": "$$",
+            "location": {
+                "address1": "285 W 4th St",
+                "address2": "",
+                "address3": null,
+                "city": "Winston-Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "285 W 4th St",
+                    "Winston-Salem, NC 27101"
+                ]
+            },
+            "phone": "+13368139473",
+            "display_phone": "(336) 813-9473",
+            "distance": 10587.438779875183,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2000",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2000",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2000",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2000",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": false
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": null,
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "QE3is5NyiIN08vcvFdJ1pA",
+            "alias": "dogwood-hops-and-crops-winston-salem",
+            "name": "Dogwood Hops and Crops",
+            "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/fDn5ECtdO4WyoTwDMDfRSA/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/dogwood-hops-and-crops-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 57,
+            "categories": [
+                {
+                    "alias": "bars",
+                    "title": "Bars"
+                },
+                {
+                    "alias": "tradamerican",
+                    "title": "American"
+                }
+            ],
+            "rating": 4.5,
+            "coordinates": {
+                "latitude": 36.10052,
+                "longitude": -80.2446499
+            },
+            "transactions": [
+                "delivery"
+            ],
+            "price": "$",
+            "location": {
+                "address1": "517 N Liberty St",
+                "address2": null,
+                "address3": "",
+                "city": "Winston-Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "517 N Liberty St",
+                    "Winston-Salem, NC 27101"
+                ]
+            },
+            "phone": "+13369551463",
+            "display_phone": "(336) 955-1463",
+            "distance": 10332.931056610996,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1500",
+                            "end": "2200",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1500",
+                            "end": "0000",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1500",
+                            "end": "0000",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1500",
+                            "end": "0000",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": true,
+                            "start": "1300",
+                            "end": "0100",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": true,
+                            "start": "1300",
+                            "end": "0100",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1300",
+                            "end": "2000",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": null,
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "mqQm-cwAzi9eFYYZvvPIvg",
+            "alias": "xcaret-mexican-grill-and-cantina-winston-salem",
+            "name": "Xcaret Mexican Grill And Cantina",
+            "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/4FDyij3Txsb-OSUa7_1kGQ/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/xcaret-mexican-grill-and-cantina-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 212,
+            "categories": [
+                {
+                    "alias": "breakfast_brunch",
+                    "title": "Breakfast & Brunch"
+                },
+                {
+                    "alias": "salad",
+                    "title": "Salad"
+                },
+                {
+                    "alias": "tacos",
+                    "title": "Tacos"
+                }
+            ],
+            "rating": 3.9,
+            "coordinates": {
+                "latitude": 36.0981241493984,
+                "longitude": -80.246326
+            },
+            "transactions": [
+                "pickup",
+                "delivery"
+            ],
+            "price": "$$",
+            "location": {
+                "address1": "202 W 4th St",
+                "address2": "",
+                "address3": null,
+                "city": "Winston-Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "202 W 4th St",
+                    "Winston-Salem, NC 27101"
+                ]
+            },
+            "phone": "+13369551345",
+            "display_phone": "(336) 955-1345",
+            "distance": 10580.550105450475,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2200",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2200",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2200",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2200",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2300",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1000",
+                            "end": "2300",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1000",
+                            "end": "2200",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": null,
+                "open24_hours": null,
+                "waitlist_reservation": true
+            }
+        },
+        {
+            "id": "5xUWXwIfW7z8XIj1eEyJrw",
+            "alias": "amalfis-pizza-italian-restaurant-kernersville",
+            "name": "Amalfi's Pizza Italian Restaurant",
+            "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/2ju1Qp8g91qvAxTD9c3rYw/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/amalfis-pizza-italian-restaurant-kernersville?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 132,
+            "categories": [
+                {
+                    "alias": "italian",
+                    "title": "Italian"
+                },
+                {
+                    "alias": "pizza",
+                    "title": "Pizza"
+                }
+            ],
+            "rating": 3.9,
+            "coordinates": {
+                "latitude": 36.1269989,
+                "longitude": -80.0698056
+            },
+            "transactions": [
+                "delivery"
+            ],
+            "price": "$$",
+            "location": {
+                "address1": "503 Nelson St",
+                "address2": "",
+                "address3": "",
+                "city": "Kernersville",
+                "zip_code": "27284",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "503 Nelson St",
+                    "Kernersville, NC 27284"
+                ]
+            },
+            "phone": "+13369935011",
+            "display_phone": "(336) 993-5011",
+            "distance": 7893.262276188254,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2200",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2200",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2030",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": "",
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "MqRB4DHIdenoxj7_uPGYXg",
+            "alias": "east-of-texas-winston-salem-3",
+            "name": "East Of Texas",
+            "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/xrNlbbUbhEtRCM2AEI8f4g/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/east-of-texas-winston-salem-3?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 122,
+            "categories": [
+                {
+                    "alias": "bbq",
+                    "title": "Barbeque"
+                },
+                {
+                    "alias": "tex-mex",
+                    "title": "Tex-Mex"
+                },
+                {
+                    "alias": "cocktailbars",
+                    "title": "Cocktail Bars"
+                }
+            ],
+            "rating": 4.0,
+            "coordinates": {
+                "latitude": 36.082339570006674,
+                "longitude": -80.24492114782333
+            },
+            "transactions": [],
+            "price": "$$",
+            "location": {
+                "address1": "907 S Broad St",
+                "address2": "",
+                "address3": null,
+                "city": "Winston-Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "907 S Broad St",
+                    "Winston-Salem, NC 27101"
+                ]
+            },
+            "phone": "+13364227076",
+            "display_phone": "(336) 422-7076",
+            "distance": 11608.327057650296,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1000",
+                            "end": "2030",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1000",
+                            "end": "2030",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1000",
+                            "end": "2030",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1000",
+                            "end": "2030",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1000",
+                            "end": "2130",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0900",
+                            "end": "2130",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1000",
+                            "end": "2000",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": false
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": "https://east-of-texas-wsnc.com/east-of-texas-menus/",
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "3Y8VOHk4EkCOAmLZHF_TbQ",
+            "alias": "little-richards-barbeque-walkertown",
+            "name": "Little Richard's Barbeque",
+            "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/tPKJ65CckJaAmc8-M6vS5g/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/little-richards-barbeque-walkertown?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 90,
+            "categories": [
+                {
+                    "alias": "bbq",
+                    "title": "Barbeque"
+                }
+            ],
+            "rating": 3.4,
+            "coordinates": {
+                "latitude": 36.1635469159092,
+                "longitude": -80.1365064936995
+            },
+            "transactions": [
+                "pickup",
+                "delivery"
+            ],
+            "price": "$$",
+            "location": {
+                "address1": "5182 Reidsville Rd",
+                "address2": "",
+                "address3": "",
+                "city": "Walkertown",
+                "zip_code": "27051",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "5182 Reidsville Rd",
+                    "Walkertown, NC 27051"
+                ]
+            },
+            "phone": "+13367544495",
+            "display_phone": "(336) 754-4495",
+            "distance": 1676.513834779408,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "2100",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1100",
+                            "end": "1430",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": "http://www.littlerichardsbarbeque.com/#!menu/cfpj",
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "KYB6tX-_ukpke6ndBTPUdg",
+            "alias": "mojito-latin-soul-food-winston-salem",
+            "name": "Mojito Latin Soul Food",
+            "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/i_5ti83XuVo9-I0N911btg/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/mojito-latin-soul-food-winston-salem?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 215,
+            "categories": [
+                {
+                    "alias": "soulfood",
+                    "title": "Soul Food"
+                },
+                {
+                    "alias": "latin",
+                    "title": "Latin American"
+                }
+            ],
+            "rating": 4.2,
+            "coordinates": {
+                "latitude": 36.103665610927365,
+                "longitude": -80.24623576551677
+            },
+            "transactions": [
+                "delivery"
+            ],
+            "price": "$$",
+            "location": {
+                "address1": "723 Trade St NW",
+                "address2": "",
+                "address3": null,
+                "city": "Winston-Salem",
+                "zip_code": "27101",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "723 Trade St NW",
+                    "Winston-Salem, NC 27101"
+                ]
+            },
+            "phone": "+13367237239",
+            "display_phone": "(336) 723-7239",
+            "distance": 10223.108637062871,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1200",
+                            "end": "2000",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1200",
+                            "end": "2100",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1200",
+                            "end": "2200",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1200",
+                            "end": "2200",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1200",
+                            "end": "1800",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": false
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": "https://www.mojitolatinsoulfood.com/Menu/",
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        },
+        {
+            "id": "cl8Jzui82Yte2MWVBi7Axg",
+            "alias": "indemand-winston-salem-3",
+            "name": "InDemand-Asian Street Food & Burger Bar",
+            "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/sktbFEr_fhj9wImR9-K9Jg/o.jpg",
+            "is_closed": false,
+            "url": "https://www.yelp.com/biz/indemand-winston-salem-3?adjust_creative=PV5L3t2zaEBYAKCTUYeiPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=PV5L3t2zaEBYAKCTUYeiPg",
+            "review_count": 83,
+            "categories": [
+                {
+                    "alias": "burgers",
+                    "title": "Burgers"
+                },
+                {
+                    "alias": "asianfusion",
+                    "title": "Asian Fusion"
+                },
+                {
+                    "alias": "tapasmallplates",
+                    "title": "Tapas/Small Plates"
+                }
+            ],
+            "rating": 4.1,
+            "coordinates": {
+                "latitude": 36.102752201011775,
+                "longitude": -80.26231102969356
+            },
+            "transactions": [
+                "delivery"
+            ],
+            "price": "$$",
+            "location": {
+                "address1": "901 Reynolda Rd",
+                "address2": "",
+                "address3": null,
+                "city": "Winston-salem",
+                "zip_code": "27104",
+                "country": "US",
+                "state": "NC",
+                "display_address": [
+                    "901 Reynolda Rd",
+                    "Winston-salem, NC 27104"
+                ]
+            },
+            "phone": "+13368425771",
+            "display_phone": "(336) 842-5771",
+            "distance": 11507.648932747607,
+            "business_hours": [
+                {
+                    "open": [
+                        {
+                            "is_overnight": false,
+                            "start": "1130",
+                            "end": "0000",
+                            "day": 0
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1130",
+                            "end": "0000",
+                            "day": 1
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1130",
+                            "end": "0000",
+                            "day": 2
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1130",
+                            "end": "0000",
+                            "day": 3
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0030",
+                            "end": "0200",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1130",
+                            "end": "0000",
+                            "day": 4
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0030",
+                            "end": "0200",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1130",
+                            "end": "0000",
+                            "day": 5
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "0030",
+                            "end": "0200",
+                            "day": 6
+                        },
+                        {
+                            "is_overnight": false,
+                            "start": "1130",
+                            "end": "0000",
+                            "day": 6
+                        }
+                    ],
+                    "hours_type": "REGULAR",
+                    "is_open_now": true
+                }
+            ],
+            "attributes": {
+                "business_temp_closed": null,
+                "menu_url": null,
+                "open24_hours": null,
+                "waitlist_reservation": null
+            }
+        }
+    ],
+    "total": 478,
+    "region": {
+        "center": {
+            "longitude": -80.15134402129127,
+            "latitude": 36.1538262078016
+        }
+    }
+}
