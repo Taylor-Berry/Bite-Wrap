@@ -1,10 +1,13 @@
-import React, { useState, useRef } from 'react';
-import { View, Text, StyleSheet, Dimensions, Animated, TouchableOpacity, ScrollView } from 'react-native';
-import { BarChart } from 'react-native-chart-kit';
+import React, { useState, useRef, useEffect } from 'react';
+import { View, Text, StyleSheet, Dimensions, Animated, TouchableOpacity, ScrollView, PanResponder, PanResponderGestureState, Easing } from 'react-native';
+import { BarChart, PieChart } from 'react-native-chart-kit';
 import { useTheme } from '../ThemeProvider';
 import { InsightData } from '../../utils/insights';
 import { Ionicons } from '@expo/vector-icons';
 import { PanGestureHandler, State } from 'react-native-gesture-handler';
+import { Select } from "../../components/ui/select";
+import ContributionGraph from './ContributionGraph';
+import { SelectNative } from "../ui/select-native";
 
 const CHART_COLORS = [
   'rgba(255, 99, 132, 0.8)',
@@ -24,6 +27,14 @@ interface ChartSectionProps {
   isExpanded: boolean;
   onToggle: () => void;
 }
+
+type Restaurant = {
+  name: string;
+  count: number;
+  image?: string;
+  visits?: { date: string; count: number; }[];
+  color?: string;
+};
 
 const ChartSection: React.FC<ChartSectionProps> = ({ title, children, isExpanded, onToggle }) => {
   const theme = useTheme();
@@ -106,6 +117,64 @@ export function DashboardView({ data }: DashboardViewProps) {
   const theme = useTheme();
   const screenWidth = Dimensions.get('window').width;
   const [expandedSection, setExpandedSection] = useState('restaurants');
+  const [restaurantGraphType, setRestaurantGraphType] = useState<'bar' | 'pie'>('bar');
+  const [currentChartIndex, setCurrentChartIndex] = useState(0);
+  const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
+  const translateX = useRef(new Animated.Value(0)).current;
+
+  const panResponder = React.useMemo(
+    () =>
+      PanResponder.create({
+        onMoveShouldSetPanResponder: (_, gestureState) => {
+          const { dx, dy } = gestureState;
+          return Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 10;
+        },
+        onPanResponderRelease: (_, gestureState: PanResponderGestureState) => {
+          if (gestureState.dx > 50) {
+            // Swipe right
+            setCurrentChartIndex((prevIndex) => (prevIndex - 1 + 2) % 2);
+          } else if (gestureState.dx < -50) {
+            // Swipe left
+            setCurrentChartIndex((prevIndex) => (prevIndex + 1) % 2);
+          }
+        },
+      }),
+    []
+  );
+
+  useEffect(() => {
+    Animated.timing(translateX, {
+      toValue: -currentChartIndex * screenWidth,
+      duration: 300,
+      easing: Easing.out(Easing.cubic),
+      useNativeDriver: true,
+    }).start();
+  }, [currentChartIndex, screenWidth]);
+
+  useEffect(() => {
+    if (data.favoriteRestaurants.length > 0 && !selectedRestaurant) {
+      setSelectedRestaurant(data.favoriteRestaurants[0]);
+    }
+  }, [data.favoriteRestaurants]);
+
+  const RestaurantPieChart = () => (
+    <PieChart
+      data={data.favoriteRestaurants.map((restaurant, index) => ({
+        name: restaurant.name,
+        count: restaurant.count,
+        color: CHART_COLORS[index],
+        legendFontColor: "#7F7F7F",
+        legendFontSize: 12
+      }))}
+      width={screenWidth - 32}
+      height={220}
+      chartConfig={chartConfig}
+      accessor="count"
+      backgroundColor="transparent"
+      paddingLeft="15"
+      absolute
+    />
+  );
 
   const chartConfig = {
     backgroundGradientFrom: theme.theme.colors.background,
@@ -124,12 +193,17 @@ export function DashboardView({ data }: DashboardViewProps) {
       fontSize: 12,
     },
   };
-
   const restaurantData = {
     labels: data.favoriteRestaurants.map(() => ''),
     datasets: [{
       data: data.favoriteRestaurants.map(r => r.count),
-      colors: CHART_COLORS.map(color => () => color)
+      colors: [
+        (opacity = 1) => CHART_COLORS[0],
+        (opacity = 1) => CHART_COLORS[1],
+        (opacity = 1) => CHART_COLORS[2],
+        (opacity = 1) => CHART_COLORS[3],
+        (opacity = 1) => CHART_COLORS[4],
+      ],
     }]
   };
 
@@ -140,6 +214,74 @@ export function DashboardView({ data }: DashboardViewProps) {
     }]
   };
 
+  const renderCharts = () => {
+    return (
+      <Animated.View
+        style={[
+          styles.chartsContainer,
+          {
+            width: screenWidth * 2,
+            transform: [{ translateX }],
+          },
+        ]}
+      >
+        <View style={{ width: screenWidth }}>
+          <BarChart
+            data={restaurantData}
+            width={screenWidth - 80}
+            height={220}
+            chartConfig={{
+              ...chartConfig,
+              barPercentage: 1, 
+              color: (opacity = 1, index = 0) => {
+                return CHART_COLORS[index] || CHART_COLORS[0]; 
+              },
+              count: Math.max(...data.favoriteRestaurants.map(r => r.count)),
+            }}
+            verticalLabelRotation={0}
+            showValuesOnTopOfBars
+            yAxisLabel={''}
+            yAxisSuffix={''}
+            fromZero
+            segments={Math.max(...data.favoriteRestaurants.map(r => r.count))}
+            style={styles.chart}
+            withCustomBarColorFromData
+            flatColor
+          />
+          <View style={styles.legend}>
+            {data.favoriteRestaurants.map((restaurant, index) => (
+              <View key={restaurant.name} style={styles.legendItem}>
+                <View style={[styles.legendColor, { backgroundColor: CHART_COLORS[index] }]} />
+                <Text style={styles.legendText}>{restaurant.name}</Text>
+              </View>
+            ))}
+          </View>
+        </View>
+        <View style={{ width: screenWidth }}>
+          <View style={styles.contributionSection}>
+            <View style={styles.selectContainer}>
+              <SelectNative
+                value={selectedRestaurant?.name || null}
+                onValueChange={(value: string) => {
+                  const selected = data.favoriteRestaurants.find(r => r.name === value);
+                  setSelectedRestaurant(selected || null);
+                }}
+                placeholder="Select a restaurant"
+                items={data.favoriteRestaurants.map(r => ({
+                  label: r.name,
+                  value: r.name
+                }))}
+              />
+            </View>
+            {selectedRestaurant?.visits && (
+              <ContributionGraph visits={selectedRestaurant.visits} />
+            )}
+          </View>
+        </View>
+      </Animated.View>
+    );
+  };
+
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <ChartSection 
@@ -148,31 +290,17 @@ export function DashboardView({ data }: DashboardViewProps) {
         onToggle={() => setExpandedSection(expandedSection === 'restaurants' ? '' : 'restaurants')}
       >
         {data.favoriteRestaurants.length > 0 ? (
-          <View style={styles.chartContainer}>
-            <BarChart
-              data={restaurantData}
-              width={screenWidth - 32}
-              height={220}
-              chartConfig={{
-                ...chartConfig,
-                color: (opacity = 1, index?: number) => 
-                  CHART_COLORS[index || 0] || CHART_COLORS[0],
-                count: Math.max(...data.favoriteRestaurants.map(r => r.count)),
-              }}
-              verticalLabelRotation={0}
-              showValuesOnTopOfBars
-              yAxisLabel={''}
-              yAxisSuffix={''}
-              fromZero
-              segments={Math.max(...data.favoriteRestaurants.map(r => r.count))}
-              style={styles.chart}
-            />
-            <View style={styles.legend}>
-              {data.favoriteRestaurants.map((restaurant, index) => (
-                <View key={restaurant.name} style={styles.legendItem}>
-                  <View style={[styles.legendColor, { backgroundColor: CHART_COLORS[index] }]} />
-                  <Text style={styles.legendText}>{restaurant.name}</Text>
-                </View>
+          <View style={styles.chartContainer} {...panResponder.panHandlers}>
+            {renderCharts()}
+            <View style={styles.graphIndicator}>
+              {[0, 1].map((index) => (
+                <View
+                  key={index}
+                  style={[
+                    styles.indicatorDot,
+                    currentChartIndex === index && styles.activeIndicatorDot,
+                  ]}
+                />
               ))}
             </View>
           </View>
@@ -238,7 +366,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   chartSection: {
-    marginBottom: 24,
+    marginBottom: 10,
     backgroundColor: 'white',
     borderRadius: 16,
     shadowColor: "#000",
@@ -295,13 +423,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   legend: {
-    marginTop: 16,
+    marginTop: 0,
     flexDirection: 'column',
   },
   legendItem: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 8,
+    marginRight: 16,
   },
   legendColor: {
     width: 20,
@@ -312,6 +441,38 @@ const styles = StyleSheet.create({
   legendText: {
     fontSize: 14,
     color: '#333',
+  },
+  graphIndicator: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 16,
+  },
+  indicatorDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: '#ccc',
+    marginHorizontal: 4,
+  },
+  activeIndicatorDot: {
+    backgroundColor: '#333',
+  },
+  chartsContainer: {
+    flexDirection: 'row',
+  },
+  contributionSection: {
+    gap: 16,
+  },
+  selectContainer: {
+    width: '80%',
+    alignSelf: 'center',
+    marginBottom: 8,
+    paddingRight: 40
+  },
+  selectWrapper: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
   },
 });
 

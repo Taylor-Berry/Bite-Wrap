@@ -10,6 +10,10 @@ export interface InsightData {
     name: string;
     count: number;
     image?: string;
+    visits: {
+      date: string;
+      count: number;
+    }[];
   }[];
   topIngredients: {
     name: string;
@@ -46,7 +50,8 @@ export const getInsights = async (): Promise<InsightData> => {
       .map(item => ({
         name: item.item_name,
         count: item.count,
-        image: item.image
+        image: item.image,
+        visits: []
       }));
 
     console.log('Processed restaurants:', restaurants); // Debug log
