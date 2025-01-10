@@ -15,6 +15,7 @@ export default function RootLayout() {
               <Stack.Screen name="(tabs)" />
               <Stack.Screen name="log" options={{ presentation: 'modal' }} />
               <Stack.Screen name="add-recipe" options={{ presentation: 'modal' }} />
+              <Stack.Screen name="edit-profile" options={{ presentation: 'modal' }} />
             </Stack>
           </ThemeProvider>
         </AuthProvider>

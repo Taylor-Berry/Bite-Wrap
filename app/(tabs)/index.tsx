@@ -8,7 +8,7 @@ import { format } from 'date-fns';
 import { useRouter } from 'expo-router';
 import { Log, getLogsByDate, deleteLogMeal } from '../../utils/database';
 import { useFocusEffect } from '@react-navigation/native';
-import { GestureHandlerRootView, Swipeable } from 'react-native-gesture-handler';
+import { SkeletonMealCard } from '../../components/SkeletonLoading';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -22,7 +22,7 @@ const MealCard = ({ meal, onDelete }: {
 
   const title = meal.location.toLowerCase() === 'home'
     ? `${meal.name} at Home for ${meal.mealType.charAt(0).toUpperCase() + meal.mealType.slice(1)}`
-    : `${meal.mealType.charAt(0).toUpperCase() + meal.mealType.slice(1)} at ${meal.location}`;
+    : `${meal.mealType.charAt(0).toUpperCase() + meal.mealType.slice(1)} at ${meal.name}`;
 
   return (
     <View style={styles.card}>
@@ -57,6 +57,7 @@ export default function HomeScreen() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [showCalendar, setShowCalendar] = useState(false);
   const [logs, setLogs] = useState<Log[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -65,9 +66,11 @@ export default function HomeScreen() {
   );
 
   const fetchLogs = async () => {
+    setIsLoading(true);
     const dateString = format(selectedDate, 'yyyy-MM-dd');
     const fetchedLogs = await getLogsByDate(dateString);
     setLogs(fetchedLogs);
+    setIsLoading(false);
   };
 
   const handleDateChange = (day: any) => {
@@ -115,7 +118,13 @@ export default function HomeScreen() {
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}
       >
-        {sortedLogs.length > 0 ? (
+        {isLoading ? (
+          <>
+            <SkeletonMealCard />
+            <SkeletonMealCard />
+            <SkeletonMealCard />
+          </>
+        ) : sortedLogs.length > 0 ? (
           sortedLogs.map((log) => (
             <MealCard key={log.id} meal={{...log.meal, mealType: log.mealType}} onDelete={() => handleDeleteMeal(log.mealType)} />
           ))

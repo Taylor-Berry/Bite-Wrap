@@ -9,6 +9,7 @@ type AuthContextType = {
   signIn: (email: string, password: string) => Promise<void>;
   signUp: (email: string, password: string) => Promise<boolean>;
   signOut: () => Promise<void>;
+  updateProfile: (updates: { full_name?: string; avatar_url?: string }) => Promise<void>;
 };
 
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
@@ -70,11 +71,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return false;  // Return false if email confirmation required
   };
 
+  const updateProfile = async (updates: { full_name?: string; avatar_url?: string }) => {
+    const { error } = await supabase.auth.updateUser({
+      data: updates
+    });
+    if (error) throw error;
+    // Refresh the session to get the updated user data
+    const { data: { session: newSession } } = await supabase.auth.getSession();
+    setSession(newSession);
+  };
+
   return (
-    <AuthContext.Provider value={{ session, loading, signIn, signUp, signOut }}>
+    <AuthContext.Provider value={{ session, loading, signIn, signUp, signOut, updateProfile }}>
       {children}
     </AuthContext.Provider>
   );
 }
 
-export const useAuth = () => useContext(AuthContext); 
+export const useAuth = () => useContext(AuthContext);
+

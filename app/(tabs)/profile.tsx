@@ -1,10 +1,11 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Alert } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Alert, Image } from 'react-native';
 import { useTheme } from '../../components/ThemeProvider';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useAuth } from '../../components/AuthProvider';
+import { SkeletonSettingItem } from '../../components/SkeletonLoading';
 
 type SettingItemProps = {
   icon: string;
@@ -55,7 +56,17 @@ export default function ProfileScreen() {
   const theme = useTheme();
   const router = useRouter();
   const { isDark, toggleTheme } = useTheme();
-  const { signOut } = useAuth();
+  const { signOut, session } = useAuth();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading user data
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleLogout = async () => {
     try {
@@ -67,67 +78,84 @@ export default function ProfileScreen() {
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: theme.theme.colors.background }]}>
+      <View style={styles.avatarContainer}>
+        <Image
+          source={{ uri: session?.user?.user_metadata?.avatar_url || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y' }}
+          style={styles.avatar}
+        />
+      </View>
       <View style={styles.header}>
         <Text style={[theme.theme.typography.header, styles.headerTitle]}>Settings</Text>
       </View>
 
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
-        <SectionHeader title="Profile" />
-        <SettingItem
-          icon="person-outline"
-          title="Edit profile"
-          subtitle="Add a photo, set your name, and more"
-          onPress={() => {}}
-        />
+        {isLoading ? (
+          <>
+            <SkeletonSettingItem />
+            <SkeletonSettingItem />
+            <SkeletonSettingItem />
+            <SkeletonSettingItem />
+            <SkeletonSettingItem />
+          </>
+        ) : (
+          <>
+            <SectionHeader title="Profile" />
+            <SettingItem
+              icon="person-outline"
+              title="Edit profile"
+              onPress={() => router.push('/edit-profile')}
+            />
 
-        <SectionHeader title="Notifications" />
-        <SettingItem
-          icon="notifications-outline"
-          title="Push notifications"
-          subtitle="On"
-          onPress={() => {}}
-        />
-        <SettingItem
-          icon="mail-outline"
-          title="Email notifications"
-          subtitle="On"
-          onPress={() => {}}
-        />
+            <SectionHeader title="Notifications" />
+            <SettingItem
+              icon="notifications-outline"
+              title="Push notifications"
+              subtitle="On"
+              onPress={() => {}}
+            />
+            <SettingItem
+              icon="mail-outline"
+              title="Email notifications"
+              subtitle="On"
+              onPress={() => {}}
+            />
 
-        <SectionHeader title="Appearance" />
-        <SettingItem
-          icon="moon-outline"
-          title="Dark Mode"
-          subtitle={isDark ? "On" : "Off"}
-          onPress={toggleTheme}
-        />
+            <SectionHeader title="Appearance" />
+            <SettingItem
+              icon="moon-outline"
+              title="Dark Mode"
+              subtitle={isDark ? "On" : "Off"}
+              onPress={toggleTheme}
+            />
 
-        <SectionHeader title="Meal logging" />
-        <SettingItem
-          icon="time-outline"
-          title="Auto-logging"
-          subtitle="Off"
-          onPress={() => {}}
-        />
+            <SectionHeader title="Meal logging" />
+            <SettingItem
+              icon="time-outline"
+              title="Auto-logging"
+              subtitle="Off"
+              onPress={() => {}}
+            />
 
-        <SectionHeader title="Support" />
-        <SettingItem
-          icon="help-circle-outline"
-          title="Help Center"
-          onPress={() => {}}
-        />
-        <SettingItem
-          icon="chatbubble-outline"
-          title="Give feedback"
-          onPress={() => {}}
-        />
+            <SectionHeader title="Support" />
+            <SettingItem
+              icon="help-circle-outline"
+              title="Help Center"
+              onPress={() => {}}
+            />
+            <SettingItem
+              icon="chatbubble-outline"
+              title="Give feedback"
+              onPress={() => {}}
+            />
 
-        <TouchableOpacity 
-          style={styles.logoutButton}
-          onPress={handleLogout}
-        >
-          <Text style={styles.logoutText}>Log Out</Text>
-        </TouchableOpacity>
+            <TouchableOpacity 
+              style={styles.logoutButton}
+              onPress={handleLogout}
+            >
+              <Text style={styles.logoutText}>Log Out</Text>
+            </TouchableOpacity>
+          </>
+        )}
       </ScrollView>
     </SafeAreaView>
   );
@@ -140,9 +168,13 @@ const styles = StyleSheet.create({
   header: {
     paddingHorizontal: 16,
     paddingVertical: 12,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   headerTitle: {
     fontSize: 32,
+    flex: 1,
   },
   content: {
     flex: 1,
@@ -184,6 +216,17 @@ const styles = StyleSheet.create({
   logoutText: {
     fontSize: 18,
     fontWeight: '600',
+  },
+  avatarContainer: {
+    position: 'absolute',
+    top: 65,
+    right: 40,
+    zIndex: 1,
+  },
+  avatar: {
+    width: 70,
+    height: 70,
+    borderRadius: 40,
   },
 });
 

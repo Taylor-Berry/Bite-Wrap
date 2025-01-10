@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   View, 
   Text, 
@@ -31,6 +31,7 @@ import { addLog as addLogFunc, getLogsByDate, deleteLogMeal, Log } from '../util
 import { getCurrentLocation, LocationData } from '../utils/location';
 import { searchNearbyRestaurants, Restaurant } from '../utils/restaurants';
 import { getFavoriteRestaurants, FavoriteRestaurant, addFavoriteRestaurant, removeFavoriteRestaurant } from '../utils/favorites';
+import { SkeletonRestaurantCard, SkeletonRecipeCard } from '../components/SkeletonLoading';
 
 const DEFAULT_IMAGE = 'https://placehold.co/600x400/png';
 
@@ -194,10 +195,12 @@ export default function LogScreen() {
   const [filteredRestaurants, setFilteredRestaurants] = useState<Restaurant[]>([]);
   const [recentRestaurants, setRecentRestaurants] = useState<Log[]>([]);
   const [favoriteRestaurants, setFavoriteRestaurants] = useState<FavoriteRestaurant[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useFocusEffect(
     React.useCallback(() => {
       const fetchData = async () => {
+        setIsLoading(true);
         const locationData = await getCurrentLocation();
         if (locationData) {
           setLocation(locationData);
@@ -209,11 +212,12 @@ export default function LogScreen() {
         setRecentRestaurants(recentLogs);
         const favorites = await getFavoriteRestaurants();
         setFavoriteRestaurants(favorites);
+        await fetchRecipes();
+        await fetchExistingLogs();
+        setIsLoading(false);
       };
 
       fetchData();
-      fetchRecipes();
-      fetchExistingLogs();
     }, [date])
   );
 
@@ -375,6 +379,20 @@ export default function LogScreen() {
     : nearbyRestaurants.slice(0, 10);
 
   const renderSearchContent = () => {
+    if (isLoading) {
+      return (
+        <View style={styles.section}>
+          <Text style={theme.theme.typography.title}>Loading...</Text>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.restaurantsScroll}>
+            <SkeletonRestaurantCard />
+            <SkeletonRestaurantCard />
+            <SkeletonRestaurantCard />
+          </ScrollView>
+        </View>
+      );
+    }
+
+    // Show normal content when not searching
     if (searchQuery) {
       // Show only search results when searching
       return (
@@ -506,26 +524,41 @@ export default function LogScreen() {
     );
   };
 
-  const renderRecipeContent = () => (
-    <View style={styles.section}>
-      <Text style={theme.theme.typography.title}>Recipes</Text>
-      <View style={styles.recipeGrid}>
-        {filteredRecipes.map((recipe) => (
-          <RecipeCard
-            key={recipe.id}
-            recipe={recipe}
-            onPress={() => handleAddMeal(recipe.name, recipe.image, "home")}
-            onDelete={() => handleDeleteRecipe(recipe.id)}
-            onLongPress={(event) => handleLongPress(event, {
-              name: recipe.name,
-              image: recipe.image,
-              location: "home"
-            })}
-          />
-        ))}
+  const renderRecipeContent = () => {
+    if (isLoading) {
+      return (
+        <View style={styles.section}>
+          <Text style={theme.theme.typography.title}>Recipes</Text>
+          <View style={styles.recipeGrid}>
+            <SkeletonRecipeCard />
+            <SkeletonRecipeCard />
+            <SkeletonRecipeCard />
+            <SkeletonRecipeCard />
+          </View>
+        </View>
+      );
+    }
+    return (
+      <View style={styles.section}>
+        <Text style={theme.theme.typography.title}>Recipes</Text>
+        <View style={styles.recipeGrid}>
+          {filteredRecipes.map((recipe) => (
+            <RecipeCard
+              key={recipe.id}
+              recipe={recipe}
+              onPress={() => handleAddMeal(recipe.name, recipe.image, "home")}
+              onDelete={() => handleDeleteRecipe(recipe.id)}
+              onLongPress={(event) => handleLongPress(event, {
+                name: recipe.name,
+                image: recipe.image,
+                location: "home"
+              })}
+            />
+          ))}
+        </View>
       </View>
-    </View>
-  );
+    );
+  };
 
 
   return (
@@ -819,9 +852,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 4,
-  },
-  favoriteButton: {
-    padding: 4,
   },
   favoriteRestaurantCard: {
     width: 160,
