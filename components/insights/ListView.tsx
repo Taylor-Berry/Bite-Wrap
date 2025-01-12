@@ -26,8 +26,8 @@ export function ListView({ data }: ListViewProps) {
   const theme = useTheme();
 
   const hasData = (
+    data.mostVisitedRestaurants.thisYear.length > 0 ||
     data.mostCookedDishes.length > 0 ||
-    data.favoriteRestaurants.length > 0 ||
     data.topIngredients.length > 0
   );
 
@@ -101,8 +101,8 @@ export function ListView({ data }: ListViewProps) {
       )}
 
       {renderSection(
-        'Favorite restaurants',
-        data.favoriteRestaurants.map((restaurant) =>
+        'Top 5 Most visited restaurants (This Year)',
+        data.mostVisitedRestaurants.thisYear.slice(0, 5).map((restaurant) =>
           renderItem(
             restaurant.name,
             `${restaurant.count} visits`,

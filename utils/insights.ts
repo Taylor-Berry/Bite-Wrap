@@ -1,19 +1,15 @@
 import { supabase } from '../lib/supabase';
 
 export interface InsightData {
+  mostVisitedRestaurants: {
+    thisMonth: RestaurantData[];
+    thisYear: RestaurantData[];
+    allTime: RestaurantData[];
+  };
   mostCookedDishes: {
     name: string;
     count: number;
     image?: string;
-  }[];
-  favoriteRestaurants: {
-    name: string;
-    count: number;
-    image?: string;
-    visits: {
-      date: string;
-      count: number;
-    }[];
   }[];
   topIngredients: {
     name: string;
@@ -21,10 +17,18 @@ export interface InsightData {
   }[];
 }
 
+interface RestaurantData {
+  name: string;
+  count: number;
+  image?: string;
+}
+
 export const getInsights = async (): Promise<InsightData> => {
   try {
     console.log('Starting insights fetch...');
-    const currentYear = new Date().getFullYear();
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth() + 1; // JavaScript months are 0-indexed
 
     // Get current user
     const { data: { user } } = await supabase.auth.getUser();
@@ -34,43 +38,40 @@ export const getInsights = async (): Promise<InsightData> => {
     const { data, error } = await supabase
       .from('analytics')
       .select('*')
-      .eq('year', currentYear)
-      .eq('user_id', user.id)
-      .in('item_type', ['restaurant', 'recipe', 'ingredient']);
+      .eq('user_id', user.id);
 
     console.log('Raw analytics data:', data); // Debug log
 
     if (error) throw error;
 
-    // Process the data with more logging
-    const restaurants = data
+    // Process the data for restaurants
+    const allRestaurants = data
       .filter(item => item.item_type === 'restaurant')
-      .sort((a, b) => b.count - a.count)
-      .slice(0, 5)
       .map(item => ({
         name: item.item_name,
         count: item.count,
         image: item.image,
-        visits: []
+        year: item.year,
+        month: item.month
       }));
 
-    console.log('Processed restaurants:', restaurants); // Debug log
-
-    const recipes = data
-      .filter(item => item.item_type === 'recipe')
-      .sort((a, b) => b.count - a.count)
-      .slice(0, 5)
-      .map(item => ({
-        name: item.item_name,
-        count: item.count,
-        image: item.image
-      }));
-
-    console.log('Processed recipes:', recipes); // Debug log
+    const mostVisitedRestaurants = {
+      thisMonth: getTopRestaurants(allRestaurants.filter(r => r.year === currentYear && r.month === currentMonth)),
+      thisYear: getTopRestaurants(allRestaurants.filter(r => r.year === currentYear)),
+      allTime: getTopRestaurants(allRestaurants)
+    };
 
     const insights = {
-      mostCookedDishes: recipes,
-      favoriteRestaurants: restaurants,
+      mostVisitedRestaurants,
+      mostCookedDishes: data
+        .filter(item => item.item_type === 'recipe')
+        .sort((a, b) => b.count - a.count)
+        .slice(0, 5)
+        .map(item => ({
+          name: item.item_name,
+          count: item.count,
+          image: item.image
+        })),
       topIngredients: data
         .filter(item => item.item_type === 'ingredient')
         .sort((a, b) => b.count - a.count)
@@ -87,10 +88,25 @@ export const getInsights = async (): Promise<InsightData> => {
   } catch (error) {
     console.error('Error details:', error);
     return {
+      mostVisitedRestaurants: { thisMonth: [], thisYear: [], allTime: [] },
       mostCookedDishes: [],
-      favoriteRestaurants: [],
       topIngredients: []
     };
   }
 };
+
+function getTopRestaurants(restaurants: RestaurantData[]): RestaurantData[] {
+  return restaurants
+    .reduce((acc, curr) => {
+      const existing = acc.find(r => r.name === curr.name);
+      if (existing) {
+        existing.count += curr.count;
+      } else {
+        acc.push({ ...curr });
+      }
+      return acc;
+    }, [] as RestaurantData[])
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 5);  // Limit to top 5 restaurants
+}
 

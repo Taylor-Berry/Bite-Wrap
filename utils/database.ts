@@ -79,6 +79,12 @@ export interface Recipe {
   }[];
 }
 
+export interface EatenRecipe {
+  id: string;
+  recipeId: string;
+  eatenAt: Date;
+}
+
 const getCurrentUser = () => {
   const user = supabase.auth.getSession();
   if (!user) throw new Error('Not authenticated');
@@ -194,17 +200,17 @@ export const getRecentRestaurantLogs = async (limit: number = 3): Promise<Log[]>
     if (error) throw error;
     if (!logs) return [];
 
-    return logs.map(log => ({
+    return logs.filter(log => log.meals !== null).map(log => ({
       id: log.id,
       date: log.date,
       mealType: log.meal_type,
       meal: {
-        id: log.meals!.id,
-        name: log.meals!.name,
-        location: log.meals!.location,
-        description: log.meals!.description,
-        image: log.meals!.image,
-        thumbnailImage: log.meals!.thumbnail_image,
+        id: log.meals?.id ?? '',
+        name: log.meals?.name ?? '',
+        location: log.meals?.location ?? '',
+        description: log.meals?.description ?? '',
+        image: log.meals?.image,
+        thumbnailImage: log.meals?.thumbnail_image,
       }
     }));
   } catch (error) {
@@ -451,6 +457,48 @@ export const getRecipeWithIngredients = async (recipeId: string): Promise<Recipe
   } catch (error) {
     console.error('Error getting recipe:', error);
     return null;
+  }
+};
+
+export const addEatenRecipe = async (recipeId: string): Promise<void> => {
+  try {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session?.user) throw new Error('Not authenticated');
+
+    const { error } = await supabase
+      .from('eaten_recipes')
+      .insert({
+        user_id: session.user.id,
+        recipe_id: recipeId,
+      });
+
+    if (error) throw error;
+  } catch (error) {
+    console.error('Error adding eaten recipe:', error);
+    throw error;
+  }
+};
+
+export const getEatenRecipes = async (): Promise<EatenRecipe[]> => {
+  try {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session?.user) throw new Error('Not authenticated');
+
+    const { data, error } = await supabase
+      .from('eaten_recipes')
+      .select('id, recipe_id, eaten_at')
+      .eq('user_id', session.user.id);
+
+    if (error) throw error;
+
+    return data.map(item => ({
+      id: item.id,
+      recipeId: item.recipe_id,
+      eatenAt: new Date(item.eaten_at),
+    }));
+  } catch (error) {
+    console.error('Error getting eaten recipes:', error);
+    return [];
   }
 };
 

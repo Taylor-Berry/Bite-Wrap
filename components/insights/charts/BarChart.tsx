@@ -10,7 +10,11 @@ interface BarChartProps {
 
 export function BarChart({ data }: BarChartProps) {
   if (data.length === 0) {
-    return null;
+    return (
+      <View style={styles.emptyContainer}>
+        <Text style={styles.emptyText}>No data available</Text>
+      </View>
+    );
   }
 
   const maxValue = Math.max(...data.map(item => item.value));
@@ -25,7 +29,8 @@ export function BarChart({ data }: BarChartProps) {
               style={[
                 styles.bar,
                 { 
-                  height: `${(item.value / maxValue) * 100}%`,
+                  height: `${(item.value / maxValue) * 80}%`,  // Scale to 80% of the container height
+                  minHeight: 4,  // Ensure very small values are still visible
                 }
               ]} 
             />
@@ -46,6 +51,7 @@ export function BarChart({ data }: BarChartProps) {
 const styles = StyleSheet.create({
   container: {
     height: 200,
+    width: '100%',
   },
   barsContainer: {
     flex: 1,
@@ -53,16 +59,17 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'flex-end',
     paddingHorizontal: 16,
+    paddingBottom: 20,  // Add some padding at the bottom
   },
   barWrapper: {
     flex: 1,
-    marginHorizontal: 12,
+    marginHorizontal: 4,
     height: '100%',
     justifyContent: 'flex-end',
   },
   bar: {
     width: '100%',
-    backgroundColor: '#000000',
+    backgroundColor: '#6B7280',
     borderTopLeftRadius: 4,
     borderTopRightRadius: 4,
   },
@@ -74,16 +81,25 @@ const styles = StyleSheet.create({
   },
   label: {
     flex: 1,
-    fontSize: 13,
+    fontSize: 12,
     color: '#6B7280',
     textAlign: 'center',
-    marginHorizontal: 12,
+    marginHorizontal: 2,
   },
   barCount: {
-    fontSize: 13,
+    fontSize: 12,
     color: '#6B7280',
     textAlign: 'center',
-    marginBottom: 8,
+    marginBottom: 4,
+  },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  emptyText: {
+    fontSize: 14,
+    color: '#6B7280',
   },
 });
 

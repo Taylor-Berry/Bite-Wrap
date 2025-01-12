@@ -32,6 +32,7 @@ import { getCurrentLocation, LocationData } from '../utils/location';
 import { searchNearbyRestaurants, Restaurant } from '../utils/restaurants';
 import { getFavoriteRestaurants, FavoriteRestaurant, addFavoriteRestaurant, removeFavoriteRestaurant } from '../utils/favorites';
 import { SkeletonRestaurantCard, SkeletonRecipeCard } from '../components/SkeletonLoading';
+import { addEatenRecipe } from '../utils/database';
 
 const DEFAULT_IMAGE = 'https://placehold.co/600x400/png';
 
@@ -308,6 +309,15 @@ export default function LogScreen() {
 
       try {
         await addLogFunc(newLog);
+        
+        // If the meal is a recipe (location is 'home'), add it as an eaten recipe
+        if (location === 'home') {
+          const recipe = recipes.find(r => r.name === selectedMeal.name);
+          if (recipe) {
+            await addEatenRecipe(recipe.id);
+          }
+        }
+        
         Alert.alert('Meal added successfully!');
         setSelectedMeal(null);
         setActionOverlayVisible(false);
